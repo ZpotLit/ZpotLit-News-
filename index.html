@@ -1,158 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZpotLit Daily News</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background: #f5f6fa; color: #333; }
-    header { background: #1a1a1a; color: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    header .logo { font-size: 1.5rem; font-weight: bold; }
-    nav ul { display: flex; list-style: none; flex-wrap: wrap; }
-    nav ul li { margin-left: 15px; }
-    nav ul li a { color: #fff; text-decoration: none; font-weight: 500; }
-    .breaking-news { background-color: #e63946; color: #fff; padding: 10px 20px; font-weight: bold; overflow: hidden; white-space: nowrap; }
-    .breaking-news p { display: inline-block; padding-left: 100%; animation: scroll 20s linear infinite; }
-    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-    .category-menu { display: flex; flex-wrap: wrap; justify-content: center; padding: 10px 0; gap: 10px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .category-menu button { padding: 8px 15px; border: none; background-color: #1a73e8; color: white; border-radius: 5px; cursor: pointer; font-weight: 500; }
-    .category-menu button:hover { background-color: #155ab6; }
-    #news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
-    .news-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; flex-direction: column; transition: transform 0.2s ease; }
-    .news-card:hover { transform: translateY(-4px); }
-    .news-card img { width: 100%; height: 180px; object-fit: cover; }
-    .news-card h3 { padding: 10px; font-size: 1.1rem; color: #222; }
-    .news-card p { padding: 0 10px 10px; font-size: 0.95rem; color: #555; }
-    .news-card a { margin: 0 10px 15px; color: #1a73e8; text-decoration: none; font-weight: bold; }
-    footer { text-align: center; padding: 15px; background-color: #1a1a1a; color: #fff; font-size: 0.9rem; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>ZpotLit News | Breaking & Daily Updates</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f4f4f4;color:#222;transition:0.3s;}
+#breaking-bar{background:#009933;color:#fff;position:sticky;top:0;z-index:2000;display:flex;align-items:center;height:2.5rem;overflow:hidden;}
+#breaking-title{background:#007a29;padding:0 1rem;font-weight:600;flex-shrink:0;height:100%;display:flex;align-items:center;}
+#ticker-container{flex:1;overflow:hidden;position:relative;height:100%;display:flex;align-items:center;}
+#ticker{display:inline-block;white-space:nowrap;position:absolute;left:100%;will-change:transform;animation:scroll-left 120s linear infinite;color:#fff;font-weight:600;}
+@keyframes scroll-left{0%{transform:translateX(0%);}100%{transform:translateX(-100%);}}
+header{background:#009933;color:#fff;text-align:center;padding:1rem;font-size:1.4rem;font-weight:600;position:sticky;top:30px;z-index:1000;display:flex;align-items:center;justify-content:space-between;}
+#darkModeToggle{background:#fff;color:#009933;border:none;padding:0.4rem 0.7rem;border-radius:8px;font-weight:600;cursor:pointer;}
+#search-container{background:#fff;padding:0.6rem;display:flex;justify-content:center;align-items:center;gap:0.4rem;border-bottom:2px solid #ddd;}
+#search-input{width:75%;padding:0.6rem;border:2px solid #ccc;border-radius:8px;color:#222;background:#fff;}
+#search-input::placeholder{color:#888;}
+#search-btn{background:#009933;color:#fff;border:none;padding:0.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;}
+nav{display:flex;justify-content:space-around;background:#fff;border-bottom:2px solid #ddd;flex-wrap:wrap;}
+nav button{flex:1;padding:0.8rem 0;border:none;background:#fff;font-weight:600;color:#555;cursor:pointer;transition:0.3s;}
+nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ffe8;}
+.news-section{display:none;padding:1rem;}
+.news-section.active{display:block;}
+.news-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
+.news-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s, background 0.3s;}
+.news-card:hover{transform:translateY(-4px);}
+.news-card img{width:100%;height:180px;object-fit:cover;}
+.news-card-content{padding:0.8rem;}
+.news-card h3{font-size:1rem;margin-bottom:0.3rem;color:#111;transition:color 0.3s;}
+.news-meta{font-size:0.8rem;color:#555;margin-bottom:0.5rem;transition:color 0.3s;}
+.news-card a{display:inline-block;margin-top:0.4rem;background:#009933;color:#fff;padding:0.4rem 0.7rem;border-radius:6px;text-decoration:none;font-size:0.9rem;transition:background 0.3s,color 0.3s;}
+.dark-mode{background:#111;color:#eee;}
+.dark-mode header{background:#007a29;}
+.dark-mode nav{background:#222;border-color:#333;}
+.dark-mode nav button{background:#222;color:#ccc;}
+.dark-mode nav button.active{color:#00ff99;background:#333;border-color:#00ff99;}
+.dark-mode .news-card{background:#1e1e1e;box-shadow:none;}
+.dark-mode .news-card h3{color:#eee;}
+.dark-mode .news-meta{color:#ccc;}
+.dark-mode .news-card a{background:#00b359;color:#fff;}
+.dark-mode #search-container{background:#222;border-color:#333;}
+.dark-mode #search-input{background:#333;color:#eee;border-color:#555;}
+.dark-mode #search-input::placeholder{color:#aaa;}
+.dark-mode #ticker{color:#00ff99;}
+.sub-tabs{display:flex;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
+.sub-tabs button{background:#eee;border:none;padding:0.6rem 1rem;margin:0.2rem;font-weight:600;border-radius:8px;cursor:pointer;transition:0.3s;}
+.sub-tabs button.active{background:#009933;color:#fff;}
+.dark-mode .sub-tabs button{background:#222;color:#ccc;}
+.dark-mode .sub-tabs button.active{background:#00b359;color:#fff;}
+#lastUpdated{text-align:center;font-size:0.8rem;color:#666;margin:1rem 0;transition:color 0.3s;}
+.dark-mode #lastUpdated{color:#ccc;}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">📰 ZpotLit Daily News</div>
-    <nav>
-      <ul>
-        <li><a href="#" onclick="loadGlobalNews('general')">Global</a></li>
-        <li><a href="#" onclick="loadAfricaNews()">Africa</a></li>
-        <li><a href="#" onclick="loadNigeriaNews()">Nigeria</a></li>
-      </ul>
-    </nav>
-  </header>
+<div id="breaking-bar">
+  <span id="breaking-title">🗞 BREAKING NEWS:</span>
+  <div id="ticker-container"><div id="ticker">Loading top headlines...</div></div>
+</div>
 
-  <section class="breaking-news" id="breaking-news">
-    <p>Loading breaking news...</p>
-  </section>
+<header>
+  <h1>ZpotLit News</h1>
+  <button id="darkModeToggle">🌙</button>
+</header>
 
-  <section class="category-menu">
-    <button onclick="loadGlobalNews('general')">General</button>
-    <button onclick="loadGlobalNews('technology')">Technology</button>
-    <button onclick="loadGlobalNews('sports')">Sports</button>
-    <button onclick="loadGlobalNews('business')">Business</button>
-    <button onclick="loadGlobalNews('health')">Health</button>
-    <button onclick="loadGlobalNews('entertainment')">Entertainment</button>
-  </section>
+<div id="search-container">
+  <input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections, Sports)">
+  <button id="search-btn">Search</button>
+</div>
 
-  <main>
-    <section id="news-container"></section>
-  </main>
+<nav>
+  <button class="active" data-section="global">Global</button>
+  <button data-section="africa">Africa</button>
+  <button data-section="nigeria">Nigeria</button>
+  <button data-section="sports">Sports</button>
+</nav>
 
-  <footer>
-    <p>© 2025 ZpotLit Daily News | Powered by NewsAPI</p>
-  </footer>
+<section id="global" class="news-section active"><div class="news-container" id="global-news"></div></section>
+<section id="africa" class="news-section"><div class="news-container" id="africa-news"></div></section>
 
-  <script>
-    const apiKey = '33caabd445a4487c800ad4edce0ff02c';
-    const newsContainer = document.getElementById('news-container');
-    const breakingNews = document.getElementById('breaking-news');
+<section id="nigeria" class="news-section">
+  <div class="sub-tabs">
+    <button class="active" data-ngcat="politics">🏛 Politics</button>
+    <button data-ngcat="education">🎓 Education</button>
+    <button data-ngcat="economy">💰 Economy</button>
+  </div>
+  <div class="news-container" id="nigeria-news"></div>
+</section>
 
-    const nigeriaFeeds = [
-      'https://www.premiumtimesng.com/feed',
-      'https://punchng.com/feed/',
-      'https://www.vanguardngr.com/feed/',
-      'https://www.africanews.com/feed/?format=rss'
-    ];
+<section id="sports" class="news-section">
+  <div class="sub-tabs">
+    <button class="active" data-sport="football">⚽ Football</button>
+    <button data-sport="basketball">🏀 Basketball</button>
+    <button data-sport="others">🎾 Others</button>
+  </div>
+  <div class="news-container" id="sports-news"></div>
+</section>
 
-    async function loadBreakingNews() {
-      try {
-        const res = await fetch(`https://newsapi.org/v2/top-headlines?language=en&pageSize=5&apiKey=${apiKey}`);
-        const data = await res.json();
-        if (data.articles && data.articles.length > 0) {
-          breakingNews.innerHTML = `<p>${data.articles.map(a => a.title).join(' • ')}</p>`;
-        } else {
-          breakingNews.innerHTML = '<p>No breaking news available.</p>';
-        }
-      } catch (err) {
-        breakingNews.innerHTML = '<p>Failed to load breaking news.</p>';
-        console.error(err);
-      }
-    }
+<p id="lastUpdated">Last updated: just now</p>
 
-    async function loadGlobalNews(category = 'general') {
-      newsContainer.innerHTML = '<p>Loading Global News...</p>';
-      try {
-        const res = await fetch(`https://newsapi.org/v2/top-headlines?language=en&category=${category}&pageSize=12&apiKey=${apiKey}`);
-        const data = await res.json();
-        displayNews(data.articles);
-      } catch (err) {
-        newsContainer.innerHTML = '<p>Failed to fetch global news.</p>';
-        console.error(err);
-      }
-    }
+<script>
+const toggle=document.getElementById('darkModeToggle'); toggle.onclick=()=>{document.body.classList.toggle('dark-mode'); toggle.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙';};
+document.querySelectorAll('nav button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); document.querySelectorAll('.news-section').forEach(s=>s.classList.remove('active')); document.getElementById(btn.dataset.section).classList.add('active');});});
+let currentSport='football', currentNG='politics';
+document.querySelectorAll('[data-sport]').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('[data-sport]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentSport=btn.dataset.sport; loadSportsNews(currentSport);});});
+document.querySelectorAll('[data-ngcat]').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('[data-ngcat]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); currentNG=btn.dataset.ngcat; loadNigeriaNews(currentNG);});});
 
-    async function loadAfricaNews() {
-      newsContainer.innerHTML = '<p>Loading Africa News...</p>';
-      try {
-        const res = await fetch(`https://newsapi.org/v2/top-headlines?q=Africa&language=en&pageSize=12&apiKey=${apiKey}`);
-        const data = await res.json();
-        displayNews(data.articles);
-      } catch (err) {
-        newsContainer.innerHTML = '<p>Failed to fetch Africa news.</p>';
-        console.error(err);
-      }
-    }
+const feeds={global:['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'], africa:['https://www.africanews.com/feed/','https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf'], nigeria:{politics:['https://punchng.com/topics/politics/feed/','https://www.vanguardngr.com/category/politics/feed/'], education:['https://thenationonlineng.net/feed/','https://tribuneonlineng.com/feed/','https://dailypost.ng/feed/'], economy:['https://nairametrics.com/feed/','https://businessday.ng/feed/','https://leadership.ng/feed/']}, sports:{football:['http://feeds.bbci.co.uk/sport/football/rss.xml'],basketball:['https://www.espn.com/espn/rss/nba/news'],others:['http://feeds.bbci.co.uk/sport/rss.xml']}};
 
-    async function loadNigeriaNews() {
-      newsContainer.innerHTML = '<p>Loading Nigeria News...</p>';
-      try {
-        let allArticles = [];
-        for (const feed of nigeriaFeeds) {
-          const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`);
-          const data = await res.json();
-          const articles = data.items.map(item => ({
-            title: item.title,
-            description: item.description,
-            url: item.link,
-            urlToImage: item.thumbnail || 'https://via.placeholder.com/300x180',
-            pubDate: item.pubDate
-          }));
-          allArticles = allArticles.concat(articles);
-        }
-        allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-        displayNews(allArticles.slice(0, 12));
-      } catch (err) {
-        newsContainer.innerHTML = '<p>Failed to fetch Nigeria news.</p>';
-        console.error(err);
-      }
-    }
+async function fetchRSS(url){const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`; try{const r=await fetch(api); const d=await r.json(); return (d.items||[]).sort((a,b)=>new Date(b.pubDate||b.isoDate||b.publishedAt)-new Date(a.pubDate||a.isoDate||a.publishedAt));}catch(e){return[];}}
+function timeAgo(dateStr){if(!dateStr)return ''; const diff=(new Date()-new Date(dateStr))/1000; const h=Math.floor(diff/3600); const d=Math.floor(diff/86400); return d>0?`${d}d ago`:h>0?`${h}h ago`:`${Math.floor(diff/60)}m ago`;}
+function renderNews(container,articles){if(!articles.length){container.innerHTML="<p>No news found.</p>"; return;} container.innerHTML=articles.slice(0,12).map(a=>{const img=a.enclosure?.link||a.thumbnail||a.urlToImage||'https://via.placeholder.com/400x200?text=ZpotLit+News'; const date=a.pubDate||a.isoDate||a.publishedAt; return `<div class="news-card"><img src="${img}"><div class="news-card-content"><h3>${a.title}</h3><p class="news-meta">${timeAgo(date)}</p><a href="${a.link||a.url}" target="_blank">Read More</a></div></div>`;}).join('');}
 
-    function displayNews(articles) {
-      if (!articles || articles.length === 0) {
-        newsContainer.innerHTML = '<p>No news found.</p>';
-        return;
-      }
-      newsContainer.innerHTML = articles.map(article => `
-        <div class="news-card">
-          <img src="${article.urlToImage || 'https://via.placeholder.com/300x180'}" alt="News">
-          <h3>${article.title}</h3>
-          <p>${article.description || ''}</p>
-          <a href="${article.url}" target="_blank">Read More →</a>
-        </div>
-      `).join('');
-    }
+async function loadNews(section,id){const c=document.getElementById(id); c.innerHTML="<p>Loading news...</p>"; let all=[]; for(let f of feeds[section]) all=all.concat(await fetchRSS(f)); renderNews(c,all);}
+async function loadNigeriaNews(cat){const c=document.getElementById('nigeria-news'); c.innerHTML="<p>Loading Nigeria news...</p>"; let all=[]; for(let f of feeds.nigeria[cat]) all=all.concat(await fetchRSS(f)); renderNews(c,all);}
+async function loadSportsNews(cat){const c=document.getElementById('sports-news'); c.innerHTML="<p>Loading sports news...</p>"; let all=[]; for(let f of feeds.sports[cat]) all=all.concat(await fetchRSS(f)); renderNews(c,all);}
 
-    loadBreakingNews();
-    loadGlobalNews('general');
-  </script>
+async function loadBreaking(){const urls=['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/']; let headlines=[]; for(let u of urls){const items=await fetchRSS(u); headlines=headlines.concat(items.map(i=>i.title));} document.getElementById('ticker').innerHTML=headlines.slice(0,15).join(' • ');}
+
+document.getElementById('search-btn').addEventListener('click',async()=>{const q=document.getElementById('search-input').value.trim(); if(!q) return alert('Enter a keyword'); const container=document.createElement('div'); container.classList.add('news-container'); const sec=document.querySelector('.news-section.active'); sec.innerHTML=''; sec.appendChild(container); container.innerHTML='<p>Searching...</p>'; const url=`https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&apiKey=33caabd445a4487c800ad4edce0ff02c&pageSize=12&sortBy=publishedAt`; try{const res=await fetch(url);const data=await res.json();if(data.articles?.length){renderNews(container,data.articles.map(a=>({title:a.title,link:a.url,thumbnail:a.urlToImage,publishedAt:a.publishedAt})));}else container.innerHTML='<p>No results found.</p>';}catch(e){container.innerHTML='<p>Error fetching search results.</p>';}});
+
+async function refreshAll(){loadBreaking(); loadNews('global','global-news'); loadNews('africa','africa-news'); loadNigeriaNews(currentNG); loadSportsNews(currentSport); document.getElementById('lastUpdated').textContent="Last updated: "+new Date().toLocaleTimeString();}
+refreshAll(); setInterval(refreshAll,1800000);
+</script>
 </body>
 </html>
