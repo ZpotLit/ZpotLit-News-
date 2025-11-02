@@ -3,59 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="google-site-verification" content="oR15iqa6Ptvu-Rjhzsn1uM4iVZEM9bThqxuPT-VhV8U">
-<title>ZpotLit News | Breaking & Daily Updates</title>
+<title>ZpotLit News | Live Headlines</title>
 <style>
-/* ——— your full original styles ——— */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#f4f4f4;color:#222;transition:.3s;overflow-x:hidden;}
+body{background:#f4f4f4;color:#222;transition:0.3s;}
 #breaking-bar{background:#009933;color:#fff;overflow:hidden;position:sticky;top:0;z-index:2000;display:flex;align-items:center;}
-#breaking-title{background:#007a29;padding:.5rem 1rem;font-weight:600;flex-shrink:0;}
-#ticker-wrapper{overflow:hidden;flex:1;position:relative;height:2rem;display:flex;align-items:center;}
-#ticker{display:inline-block;white-space:nowrap;position:absolute;animation:scroll-left 200s linear infinite;color:#fff;}
+#breaking-title{background:#007a29;padding:0.5rem 1rem;font-weight:600;flex-shrink:0;}
+#ticker-wrapper{overflow:hidden;flex:1;height:2rem;display:flex;align-items:center;position:relative;}
+#ticker{white-space:nowrap;position:absolute;animation:scroll-left 200s linear infinite;color:#fff;}
 @keyframes scroll-left{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
-header{background:#009933;color:#fff;text-align:center;padding:1rem;font-size:1.4rem;font-weight:600;position:sticky;top:30px;z-index:1000;display:flex;align-items:center;justify-content:space-between;}
-#darkModeToggle{background:#fff;color:#009933;border:none;padding:.4rem .7rem;border-radius:8px;font-weight:600;cursor:pointer;}
-#search-container{background:#fff;padding:.6rem;display:flex;justify-content:center;align-items:center;gap:.4rem;border-bottom:2px solid #ddd;}
-#search-input{width:75%;padding:.6rem;border:2px solid #ccc;border-radius:8px;color:#222;background:#fff;}
-#search-btn{background:#009933;color:#fff;border:none;padding:.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;}
+header{background:#009933;color:#fff;padding:1rem;font-size:1.4rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;position:sticky;top:30px;z-index:1000;}
+#darkModeToggle{background:#fff;color:#009933;border:none;padding:0.4rem 0.7rem;border-radius:8px;font-weight:600;cursor:pointer;}
+#search-container{background:#fff;padding:0.6rem;display:flex;justify-content:center;gap:0.4rem;border-bottom:2px solid #ddd;}
+#search-input{width:75%;padding:0.6rem;border:2px solid #ccc;border-radius:8px;}
+#search-btn{background:#009933;color:#fff;border:none;padding:0.6rem 1rem;border-radius:8px;cursor:pointer;}
 nav{display:flex;justify-content:space-around;background:#fff;border-bottom:2px solid #ddd;flex-wrap:wrap;}
-nav button{flex:1;padding:.8rem 0;border:none;background:#fff;font-weight:600;color:#555;cursor:pointer;transition:.3s;}
+nav button{flex:1;padding:0.8rem 0;border:none;background:#fff;color:#555;font-weight:600;cursor:pointer;transition:0.3s;}
 nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ffe8;}
 .news-section{display:none;padding:1rem;}
 .news-section.active{display:block;}
 .news-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
-.news-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform .2s;}
+.news-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s;}
 .news-card:hover{transform:translateY(-4px);}
 .news-card img{width:100%;height:180px;object-fit:cover;}
-.news-card-content{padding:.8rem;}
-.news-card h3{font-size:1rem;margin-bottom:.3rem;color:#111;}
-.news-meta{font-size:.8rem;color:#555;margin-bottom:.5rem;}
-.news-card a{display:inline-block;margin-top:.4rem;background:#009933;color:#fff;padding:.4rem .7rem;border-radius:6px;text-decoration:none;font-size:.9rem;}
+.news-card-content{padding:0.8rem;}
+.news-card h3{font-size:1rem;margin-bottom:0.3rem;color:#111;}
+.news-meta{font-size:0.8rem;color:#555;margin-bottom:0.5rem;}
+.news-card a{display:inline-block;margin-top:0.4rem;background:#009933;color:#fff;padding:0.4rem 0.7rem;border-radius:6px;text-decoration:none;font-size:0.9rem;}
+.sub-tabs{display:flex;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
+.sub-tabs button{background:#eee;border:none;padding:0.6rem 1rem;margin:0.2rem;border-radius:8px;font-weight:600;cursor:pointer;}
+.sub-tabs button.active{background:#009933;color:#fff;}
+#lastUpdated{text-align:center;font-size:0.8rem;color:#666;margin:1rem 0;}
 .refresh-icon{position:fixed;top:50px;right:20px;font-size:24px;color:#009933;display:none;animation:spin 1s linear infinite;z-index:3000;}
 @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-.sub-tabs{display:flex;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
-.sub-tabs button{background:#eee;border:none;padding:.6rem 1rem;margin:.2rem;font-weight:600;border-radius:8px;cursor:pointer;transition:.3s;}
-.sub-tabs button.active{background:#009933;color:#fff;}
-#lastUpdated{text-align:center;font-size:.8rem;color:#666;margin:1rem 0;}
+.dark-mode{background:#111;color:#eee;}
+.dark-mode header{background:#007a29;}
+.dark-mode nav{background:#222;border-color:#333;}
+.dark-mode nav button{background:#222;color:#ccc;}
+.dark-mode nav button.active{color:#00ff99;background:#333;border-color:#00ff99;}
+.dark-mode .news-card{background:#1e1e1e;box-shadow:none;}
+.dark-mode .news-card h3{color:#eee;}
+.dark-mode .news-meta{color:#ccc;}
+.dark-mode .news-card a{background:#00b359;color:#fff;}
+.dark-mode #search-container{background:#222;border-color:#333;}
+.dark-mode #search-input{background:#333;color:#eee;border-color:#555;}
+.dark-mode #search-input::placeholder{color:#aaa;}
+.dark-mode #ticker{color:#00ff99;}
+.dark-mode .sub-tabs button{background:#222;color:#ccc;}
+.dark-mode .sub-tabs button.active{background:#00b359;color:#fff;}
 </style>
 </head>
 <body>
+
 <div id="breaking-bar">
   <span id="breaking-title">🗞 BREAKING NEWS:</span>
-  <div id="ticker-wrapper"><div id="ticker">Loading top headlines...</div></div>
+  <div id="ticker-wrapper"><div id="ticker">Loading...</div></div>
 </div>
-<header><h1>ZpotLit News</h1><button id="darkModeToggle">🌙</button></header>
+
+<header>
+  <h1>ZpotLit News</h1>
+  <button id="darkModeToggle">🌙</button>
+</header>
+
 <div id="search-container">
-  <input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections, Sports)">
+  <input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections)">
   <button id="search-btn">Search</button>
 </div>
+
 <nav>
   <button class="active" data-section="global">Global</button>
   <button data-section="africa">Africa</button>
   <button data-section="nigeria">Nigeria</button>
   <button data-section="sports">Sports</button>
 </nav>
+
 <section id="global" class="news-section active"><div class="news-container" id="global-news"></div></section>
 <section id="africa" class="news-section"><div class="news-container" id="africa-news"></div></section>
 <section id="nigeria" class="news-section">
@@ -74,64 +95,113 @@ nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ff
   </div>
   <div class="news-container" id="sports-news"></div>
 </section>
+
 <p id="lastUpdated">Last updated: just now</p>
 <div class="refresh-icon" id="refreshIcon">⟳</div>
 
 <script>
-// ——— dark mode & navigation ———
+const GNEWS_KEY="7c745f33317d4a1699d82f6b0f59e28d";
+const MEDIASTACK_KEY="a6c03fd66b8fb688064a626177955176";
+
+// Dark Mode
 const toggle=document.getElementById('darkModeToggle');
 toggle.onclick=()=>{document.body.classList.toggle('dark-mode');toggle.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙';};
-document.querySelectorAll('nav button').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.news-section').forEach(s=>s.classList.remove('active'));document.getElementById(btn.dataset.section).classList.add('active');});
-let currentSport='football',currentNG='politics';
-document.querySelectorAll('[data-sport]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-sport]').forEach(x=>x.classList.remove('active'));b.classList.add('active');currentSport=b.dataset.sport;loadSportsNews(currentSport);});
-document.querySelectorAll('[data-ngcat]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-ngcat]').forEach(x=>x.classList.remove('active'));b.classList.add('active');currentNG=b.dataset.ngcat;loadNigeriaNews(currentNG);});
 
-// ——— helpers ———
-const maxAge=24*60*60*1000;
-function freshOnly(list){return list.filter(a=>Date.now()-new Date(a.publishedAt||a.pubDate||a.isoDate||a.publishedAt).getTime()<maxAge);}
-function timeAgo(t){if(!t)return'';let d=(Date.now()-new Date(t))/1000;let h=Math.floor(d/3600),m=Math.floor(d/60);return h>0?`${h}h ago`:`${m}m ago`;}
+// Navigation
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.news-section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(btn.dataset.section).classList.add('active');
+  });
+});
 
-// ——— fetch functions ———
-async function fetchRSS(url){try{let r=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);let d=await r.json();return freshOnly(d.items||[]);}catch{return[];}}
-async function fetchNewsAPI(q){try{let r=await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&apiKey=${NEWS_API_KEY}`);let d=await r.json();return freshOnly(d.articles||[]);}catch{return[];}}
-async function fetchGNews(q){try{let r=await fetch(`https://gnews.io/api/v4/search?q=${encodeURIComponent(q)}&lang=en&token=${GNEWS_API_KEY}`);let d=await r.json();return freshOnly(d.articles||[]);}catch{return[];}}
+// Sub-tabs
+let currentSport='football', currentNG='politics';
+document.querySelectorAll('[data-sport]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-sport]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSport=btn.dataset.sport;
+    loadSportsNews(currentSport);
+  });
+});
+document.querySelectorAll('[data-ngcat]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-ngcat]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentNG=btn.dataset.ngcat;
+    currentNG==='politics'?loadNigeriaPolitics():loadNigeriaOther(currentNG);
+  });
+});
 
-function renderNews(c,a){if(!a.length){c.innerHTML='<p>No news found.</p>';return;}c.innerHTML=a.slice(0,12).map(n=>`<div class="news-card"><img src="${n.image||n.urlToImage||n.thumbnail||'https://via.placeholder.com/400x200?text=ZpotLit+News'}"><div class="news-card-content"><h3>${n.title}</h3><p class="news-meta">${timeAgo(n.publishedAt||n.pubDate)}</p><a href="${n.url||n.link}" target="_blank">Read More</a></div></div>`).join('');}
+// Helpers
+async function fetchRSS(url){try{const r=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);const d=await r.json();return d.items||[];}catch{return[];}}
+function timeAgo(date){if(!date)return'';const diff=(new Date()-new Date(date))/1000;const h=Math.floor(diff/3600);const d=Math.floor(diff/86400);return d>0?`${d}d ago`:h>0?`${h}h ago`:`${Math.floor(diff/60)}m ago`;}
+function renderNews(container,articles){if(!articles.length){container.innerHTML="<p>No news found.</p>";return;}container.innerHTML=articles.slice(0,20).map(a=>{const img=a.enclosure?.link||a.thumbnail||a.urlToImage||'https://via.placeholder.com/400x200?text=ZpotLit+News';const date=a.pubDate||a.isoDate||a.publishedAt;return `<div class="news-card"><img src="${img}"><div class="news-card-content"><h3>${a.title}</h3><p class="news-meta">${timeAgo(date)}</p><a href="${a.link||a.url}" target="_blank">Read More</a></div></div>`;}).join('');}
 
-// ——— load sections ———
-const feeds={global:['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'],
-africa:['https://www.africanews.com/feed/','https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf'],
-nigeria:{politics:['https://punchng.com/topics/politics/feed/'],education:['https://thenationonlineng.net/feed/'],economy:['https://nairametrics.com/feed/']},
-sports:{football:['http://feeds.bbci.co.uk/sport/football/rss.xml'],basketball:['https://www.espn.com/espn/rss/nba/news'],others:['http://feeds.bbci.co.uk/sport/rss.xml']}};
+// Fetch from APIs
+async function fetchGNews(country,topic,limit=20){try{const r=await fetch(`https://gnews.io/api/v4/top-headlines?country=${country}&topic=${topic}&lang=en&max=${limit}&apikey=${GNEWS_KEY}`);const d=await r.json();return (d.articles||[]).map(a=>({title:a.title,link:a.url,thumbnail:a.image,publishedAt:a.publishedAt}));}catch{return[];}}
+async function fetchMediaStack(country,category,limit=20){try{const r=await fetch(`https://api.mediastack.com/v1/news?access_key=${MEDIASTACK_KEY}&countries=${country}&categories=${category}&limit=${limit}`);const d=await r.json();return (d.data||[]).map(a=>({title:a.title,link:a.url,thumbnail:a.image,publishedAt:a.published_at}));}catch{return[];}}
 
-async function loadAllNews(){
-  await loadBreaking();
-  await Promise.all([
-    loadRSSGroup('global-news',feeds.global),
-    loadRSSGroup('africa-news',feeds.africa),
-    loadNigeriaNews(currentNG),
-    loadSportsNews(currentSport)
-  ]);
-  document.getElementById('lastUpdated').textContent='Last updated: '+new Date().toLocaleTimeString();
+// Load Sections
+async function loadNigeriaPolitics(){await loadNigeriaCategory('politics',['https://punchng.com/topics/politics/feed/','https://www.vanguardngr.com/category/politics/feed/']);}
+async function loadNigeriaOther(cat){await loadNigeriaCategory(cat,feeds.nigeria[cat]);}
+async function loadNigeriaCategory(cat,rssUrls){
+  const c=document.getElementById('nigeria-news');c.innerHTML=`<p>Loading ${cat} news...</p>`;let all=[];
+  for(let u of rssUrls) all=all.concat(await fetchRSS(u));
+  all=all.concat(await fetchGNews('ng',cat));
+  all=all.concat(await fetchMediaStack('ng',cat));
+  all=all.filter((v,i,a)=>a.findIndex(t=>t.title===v.title)===i).sort((a,b)=>new Date(b.publishedAt)-new Date(a.publishedAt));
+  renderNews(c,all);
 }
-async function loadRSSGroup(id,list){const c=document.getElementById(id);c.innerHTML='<p>Loading...</p>';let all=[];for(let u of list)all=all.concat(await fetchRSS(u));renderNews(c,all);}
-async function loadNigeriaNews(cat){const c=document.getElementById('nigeria-news');let all=[];for(let u of feeds.nigeria[cat])all=all.concat(await fetchRSS(u));renderNews(c,all);}
-async function loadSportsNews(cat){const c=document.getElementById('sports-news');let all=[];for(let u of feeds.sports[cat])all=all.concat(await fetchRSS(u));renderNews(c,all);}
-async function loadBreaking(){const u=['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/'];let h=[];for(let x of u){const it=await fetchRSS(x);h=h.concat(it.map(i=>i.title));}document.getElementById('ticker').innerHTML=h.slice(0,15).join(' • ');}
 
-// ——— search ———
-document.getElementById('search-btn').onclick=async()=>{const q=document.getElementById('search-input').value.trim();if(!q)return;const s=document.querySelector('.news-section.active .news-container');s.innerHTML='<p>Searching...</p>';let all=(await fetchGNews(q)).concat(await fetchNewsAPI(q));renderNews(s,all);};
+async function loadGlobal(){await loadCategory('global',['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'],'global-news','general');}
+async function loadAfrica(){await loadCategory('africa',['https://www.africanews.com/feed/','https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf'],'africa-news','general');}
+async function loadSportsNews(cat){await loadCategory('sports',feeds.sports[cat],'sports-news',cat);}
+async function loadCategory(name,rssUrls,containerId,topic){
+  const c=document.getElementById(containerId);c.innerHTML="<p>Loading news...</p>";let all=[];
+  for(let u of rssUrls) all=all.concat(await fetchRSS(u));
+  if(name!=='nigeria'){all=all.concat(await fetchGNews('us',topic));all=all.concat(await fetchMediaStack('us',topic));}
+  all=all.filter((v,i,a)=>a.findIndex(t=>t.title===v.title)===i).sort((a,b)=>new Date(b.publishedAt)-new Date(a.publishedAt));
+  renderNews(c,all);
+}
 
-// ——— refresh controls ———
-const icon=document.getElementById('refreshIcon');
-async function refreshAll(){icon.style.display='block';await loadAllNews();icon.style.display='none';}
-setInterval(refreshAll,15000);
+// Breaking News
+async function loadBreaking(){
+  const urls=['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/'];let titles=[];
+  for(let u of urls){const items=await fetchRSS(u);titles=titles.concat(items.map(i=>i.title));}
+  document.getElementById('ticker').innerHTML=titles.slice(0,20).join(' • ');
+}
+
+// Refresh All
+const refreshIcon=document.getElementById('refreshIcon');
+async function refreshAll(){
+  refreshIcon.style.display='block';
+  await loadBreaking(); await loadGlobal(); await loadAfrica();
+  currentNG==='politics'?await loadNigeriaPolitics():await loadNigeriaOther(currentNG);
+  await loadSportsNews(currentSport);
+  document.getElementById('lastUpdated').textContent="Last updated: "+new Date().toLocaleTimeString();
+  refreshIcon.style.display='none';
+}
 refreshAll();
+setInterval(refreshAll,30000); // 30 seconds
 
-// ——— pull-to-refresh mobile ———
-let startY=0;
-window.addEventListener('touchstart',e=>{if(window.scrollY===0)startY=e.touches[0].clientY;});
-window.addEventListener('touchmove',e=>{if(e.touches[0].clientY-startY>50)refreshAll();});
+// Search
+document.getElementById('search-btn').addEventListener('click',async()=>{
+  const q=document.getElementById('search-input').value.trim();if(!q)return alert('Enter a search keyword');
+  const container=document.createElement('div');container.classList.add('news-container');
+  const sec=document.querySelector('.news-section.active');sec.innerHTML='';sec.appendChild(container);
+  container.innerHTML='<p>Searching...</p>';
+  let results=[];
+  const urls=['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'];
+  for(let u of urls){const items=await fetchRSS(u);results=results.concat(items.filter(i=>i.title.toLowerCase().includes(q.toLowerCase())));}
+  renderNews(container,results);
+});
+
+// Feed URLs
+const feeds={nigeria:{education:['https://thenationonlineng.net/feed/','https://tribuneonlineng.com/feed/','https://dailypost.ng/feed/']},sports:{football:['http://feeds.bbci.co.uk/sport/football/rss.xml'],basketball:['https://www.espn.com/espn/rss/nba/news'],others:['http://feeds.bbci.co.uk/sport/rss.xml']}};
 </script>
 </body>
 </html>
