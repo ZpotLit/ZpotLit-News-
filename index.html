@@ -265,5 +265,25 @@ async function refreshAll(){
 // Initial load
 refreshAll();
 </script>
+<div id="consent-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#009933;color:#fff;padding:1rem;text-align:center;z-index:9999;font-size:0.9rem;">
+  <p>
+    We use cookies and similar technologies to personalize content, deliver relevant ads, and analyze our traffic. 
+    By continuing to browse ZpotLit News, you agree to our use of cookies in accordance with our 
+    <a href="/privacy-policy" style="color:#fff;text-decoration:underline;">Privacy Policy</a>.
+  </p>
+  <button id="accept-consent" style="background:#fff;color:#009933;border:none;padding:0.4rem 1rem;margin-top:0.5rem;border-radius:8px;font-weight:600;cursor:pointer;">
+    Accept & Continue
+  </button>
+</div>
+
+<script>
+  const consentBanner = document.getElementById('consent-banner');
+  const acceptBtn = document.getElementById('accept-consent');
+  if (localStorage.getItem('zpotlit_consent')) consentBanner.style.display = 'none';
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('zpotlit_consent', 'yes');
+    consentBanner.style.display = 'none';
+  });
+</script>
 </body>
 </html>
