@@ -2,233 +2,263 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZpotLit | Innovation & Daily News</title>
-<meta name="description" content="ZpotLit empowers creators and innovators by transforming ideas into digital experiences. Explore projects, news, and a global community.">
-<meta name="keywords" content="ZpotLit, Innovation, Tech, News, Projects, Learning, Community, Nigeria, Africa, Global">
-<meta name="author" content="ZpotLit">
-
-<!-- Google Site Verification -->
-<meta name="google-site-verification" content="oR15iqa6Ptvu-Rjhzsn1uM4iVZEM9bThqxuPT-VhV8U" />
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZpotLit News | Breaking & Daily Updates</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9702899463803987" crossorigin="anonymous"></script>
 <style>
+/* Reset & base */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#121212;color:#fff;transition:0.3s;display:flex;flex-direction:column;min-height:100vh;}
-body.light{background:#fff;color:#000;}
-header{background:#121212;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:1000;transition:0.3s;}
-body.light header{background:#d62828;}
-.menu-btn{font-size:2em;color:#fff;cursor:pointer;}
-body.light .menu-btn{color:#fff;}
-.logo{display:flex;align-items:center;font-size:1.6em;font-weight:700;color:#d62828;}
-.logo img{height:40px;width:auto;margin-right:10px;}
-.sidebar{position:fixed;top:0;left:-100%;width:75%;height:100%;background:#121212;padding:60px 20px;z-index:2000;transition:0.3s;}
-body.light .sidebar{background:#f5f5f5;}
-.sidebar.active{left:0;}
-.sidebar ul{list-style:none;}
-.sidebar ul li{margin:25px 0;}
-.sidebar ul li a{color:#fff;text-decoration:none;font-size:1.2em;padding:10px;border-radius:8px;display:block;}
-body.light .sidebar ul li a{color:#000;}
-.sidebar ul li a:hover{background:#d62828;color:#fff;}
-body.light .sidebar ul li a:hover{background:#b71c1c;color:#fff;}
-.close-btn{font-size:2em;color:#d62828;position:absolute;top:15px;right:20px;cursor:pointer;}
-main{padding-top:100px;flex:1;}
-section{display:none;min-height:100vh;padding:60px 25px;margin:15px auto;border-radius:10px;max-width:1000px;transition:0.3s;}
-section.active{display:block;}
-h1,h2,h3{color:#d62828;margin-bottom:15px;}
-body.light h1,h2,h3{color:#b71c1c;}
-p{line-height:1.7;margin-bottom:15px;font-size:1.1em;}
-button{background:#d62828;border:none;color:#fff;padding:12px 22px;border-radius:8px;margin-top:10px;cursor:pointer;font-weight:600;font-size:1.05em;}
-body.light button{background:#b71c1c;color:#fff;}
-button:hover{background:#b71c1c;}
-body.light button:hover{background:#d62828;}
-footer{text-align:center;padding:10px;color:#aaa;font-size:.9em;font-family:Roman;margin-top:20px;}
-footer a{color:#d62828;text-decoration:none;}
-footer a:hover{text-decoration:underline;}
-.project{background:#2a2a2a;margin:20px auto;padding:20px;border-radius:10px;text-align:left;}
-body.light .project{background:#f0f0f0;color:#000;}
-.project h3{color:#d62828;margin-bottom:10px;}
-body.light .project h3{color:#b71c1c;}
-.project p{font-size:1em;}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:20px;}
-.gallery-grid img{width:100%;border-radius:10px;}
-input,textarea{padding:10px;border-radius:5px;border:1px solid #ccc;width:100%;margin-bottom:5px;}
-.theme-btn{position:absolute;top:15px;right:20px;}
-.switch{position:relative;display:inline-block;width:50px;height:26px;}
-.switch input{opacity:0;width:0;height:0;}
-.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#888;transition:.4s;border-radius:34px;}
-.slider:before{position:absolute;content:"";height:20px;width:20px;left:4px;bottom:3px;background:white;transition:.4s;border-radius:50%;}
-input:checked + .slider{background:#d62828;}
-input:checked + .slider:before{transform:translateX(24px);}
-.success-msg{color:green;margin-top:5px;display:none;}
-.community{background:#1e1e1e;padding:20px;margin:20px auto;border-radius:10px;max-width:800px;}
-.community h2{color:#d62828;margin-bottom:10px;}
-body.light .community{background:#f0f0f0;}
-body.light .community h2{color:#b71c1c;}
-#consentBanner{position:fixed;bottom:0;width:100%;background:#333;color:#fff;padding:15px;text-align:center;z-index:9999;display:flex;justify-content:center;align-items:center;}
-#consentBanner button{margin-left:10px;padding:5px 12px;background:#d62828;border:none;color:#fff;border-radius:5px;cursor:pointer;}
+body{background:#f4f4f4;color:#222;transition:0.3s;overflow-x:hidden;}
+.dark-mode{background:#111;color:#eee;}
+.dark-mode header{background:#007a29;}
+.dark-mode nav{background:#222;border-color:#333;}
+.dark-mode nav button{background:#222;color:#ccc;}
+.dark-mode nav button.active{color:#00ff99;background:#333;border-color:#00ff99;}
+.dark-mode .news-card{background:#1e1e1e;box-shadow:none;}
+.dark-mode .news-card h3{color:#eee;}
+.dark-mode .news-meta{color:#ccc;}
+.dark-mode .news-card a{background:#00b359;color:#fff;}
+.dark-mode #search-container{background:#222;border-color:#333;}
+.dark-mode #search-input{background:#333;color:#eee;border-color:#555;}
+.dark-mode #search-input::placeholder{color:#aaa;}
+.dark-mode #ticker{color:#00ff99;}
+
+/* Breaking news ticker */
+#breaking-bar{background:#009933;color:#fff;overflow:hidden;position:sticky;top:0;z-index:2000;display:flex;align-items:center;}
+#breaking-title{background:#007a29;padding:0.5rem 1rem;font-weight:600;flex-shrink:0;}
+#ticker-wrapper{overflow:hidden;flex:1;position:relative;height:2rem;display:flex;align-items:center;}
+#ticker{display:inline-block;white-space:nowrap;position:absolute;animation:scroll-left 200s linear infinite;color:#fff;}
+@keyframes scroll-left{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+
+/* Header */
+header{background:#009933;color:#fff;text-align:center;padding:1rem;font-size:1.4rem;font-weight:600;position:sticky;top:30px;z-index:1000;display:flex;justify-content:space-between;align-items:center;}
+#darkModeToggle,#refreshBtn{background:#fff;color:#009933;border:none;padding:0.4rem 0.7rem;border-radius:8px;font-weight:600;cursor:pointer;margin-left:0.5rem;}
+
+/* Search */
+#search-container{background:#fff;padding:0.6rem;display:flex;justify-content:center;align-items:center;gap:0.4rem;border-bottom:2px solid #ddd;}
+#search-input{width:75%;padding:0.6rem;border:2px solid #ccc;border-radius:8px;color:#222;background:#fff;}
+#search-input::placeholder{color:#888;}
+#search-btn{background:#009933;color:#fff;border:none;padding:0.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;}
+
+/* Navigation tabs */
+nav{display:flex;justify-content:space-around;background:#fff;border-bottom:2px solid #ddd;flex-wrap:wrap;}
+nav button{flex:1;padding:0.8rem 0;border:none;background:#fff;font-weight:600;color:#555;cursor:pointer;transition:0.3s;}
+nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ffe8;}
+
+/* News sections */
+.news-section{display:none;padding:1rem;}
+.news-section.active{display:block;}
+.news-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
+.news-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s, background 0.3s;}
+.news-card:hover{transform:translateY(-4px);}
+.news-card img{width:100%;height:180px;object-fit:cover;}
+.news-card-content{padding:0.8rem;}
+.news-card h3{font-size:1rem;margin-bottom:0.3rem;color:#111;transition:color 0.3s;}
+.news-meta{font-size:0.8rem;color:#555;margin-bottom:0.5rem;transition:color 0.3s;}
+.news-card a{display:inline-block;margin-top:0.4rem;background:#009933;color:#fff;padding:0.4rem 0.7rem;border-radius:6px;text-decoration:none;font-size:0.9rem;transition:background 0.3s,color 0.3s;}
+
+/* Sub-tabs */
+.sub-tabs{display:flex;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
+.sub-tabs button{background:#eee;border:none;padding:0.6rem 1rem;margin:0.2rem;font-weight:600;border-radius:8px;cursor:pointer;transition:0.3s;}
+.sub-tabs button.active{background:#009933;color:#fff;}
+.dark-mode .sub-tabs button{background:#222;color:#ccc;}
+.dark-mode .sub-tabs button.active{background:#00b359;color:#fff;}
+
+/* Footer info */
+#lastUpdated{text-align:center;font-size:0.8rem;color:#666;margin:1rem 0;transition:color 0.3s;}
+.dark-mode #lastUpdated{color:#ccc;}
+
+/* Consent banner */
+#consent-banner{background:#007a29;color:#fff;padding:1rem;text-align:center;position:fixed;bottom:0;width:100%;z-index:3000;display:flex;justify-content:space-between;align-items:center;}
+#consent-btn{background:#fff;color:#007a29;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;}
 </style>
 </head>
 <body>
 
+<!-- Consent Banner -->
+<div id="consent-banner">
+<span>We use cookies and Google Ads to improve your experience. By using this site, you consent to our policies.</span>
+<button id="consent-btn">Got it</button>
+</div>
+
+<!-- Breaking news ticker -->
+<div id="breaking-bar">
+<span id="breaking-title">🗞 BREAKING NEWS:</span>
+<div id="ticker-wrapper"><div id="ticker">Loading top headlines...</div></div>
+</div>
+
 <header>
-<div class="menu-btn" onclick="openMenu()">☰</div>
-<div class="logo"><img src="logo.png" alt="ZpotLit Logo"> ZpotLit</div>
-<label class="theme-btn switch">
-<input type="checkbox" id="themeToggle" onchange="toggleTheme()">
-<span class="slider"></span>
-</label>
+<h1>ZpotLit News</h1>
+<div>
+<button id="darkModeToggle">🌙</button>
+<button id="refreshBtn">⟳ Refresh</button>
+</div>
 </header>
 
-<div class="sidebar" id="sidebar">
-<div class="close-btn" onclick="closeMenu()">×</div>
-<ul>
-<li><a href="#" onclick="showSection('home')">Home</a></li>
-<li><a href="#" onclick="showSection('portfolio')">Portfolio</a></li>
-<li><a href="#" onclick="showSection('gallery')">Gallery</a></li>
-<li><a href="#" onclick="showSection('about')">About Us</a></li>
-<li><a href="#" onclick="showSection('contact')">Contact</a></li>
-</ul>
+<!-- Search -->
+<div id="search-container">
+<input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections, Sports)">
+<button id="search-btn">Search</button>
 </div>
 
-<main>
-<section id="home" class="active">
-<h1>Welcome to ZpotLit</h1>
-<p>We transform ideas into impactful digital experiences. Explore projects, news, and resources that spark creativity. Join our global community to learn, collaborate, and bring ideas to life that can transform the world.</p>
-<p>Discover latest innovations, tutorials, and insights across tech, design, and development to help you stay ahead in your creative journey.</p>
+<!-- Navigation tabs -->
+<nav>
+<button class="active" data-section="global">Global</button>
+<button data-section="africa">Africa</button>
+<button data-section="nigeria">Nigeria</button>
+<button data-section="sports">Sports</button>
+</nav>
 
-<div class="community">
-<h2>Join Our Community</h2>
-<button onclick="openWhatsApp()">💬 Chat on WhatsApp</button>
-<button onclick="window.open('https://zpot-lit-news.vercel.app/','_blank')">📰 Visit ZpotLit News</button>
+<!-- News Sections -->
+<section id="global" class="news-section active"><div class="news-container" id="global-news"></div></section>
+<section id="africa" class="news-section"><div class="news-container" id="africa-news"></div></section>
+<section id="nigeria" class="news-section">
+<div class="sub-tabs">
+<button class="active" data-ngcat="politics">🏛 Politics</button>
+<button data-ngcat="education">🎓 Education</button>
+<button data-ngcat="economy">💰 Economy</button>
 </div>
-
-<!-- AdSense container, will load after consent -->
-<div id="adsenseContainer" style="display:none;">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9702899463803987"
-     crossorigin="anonymous"></script>
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-9702899463803987"
-       data-ad-slot="5453842544"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<div class="news-container" id="nigeria-news"></div>
+</section>
+<section id="sports" class="news-section">
+<div class="sub-tabs">
+<button class="active" data-sport="football">⚽ Football</button>
+<button data-sport="basketball">🏀 Basketball</button>
+<button data-sport="others">🎾 Others</button>
 </div>
-
+<div class="news-container" id="sports-news"></div>
 </section>
 
-<section id="portfolio">
-<h1>Portfolio</h1>
-<div class="project"><h3>ZpotPlay 🎮</h3><p>Interactive gaming platform with unique multiplayer features.</p></div>
-<div class="project"><h3>ZpotChat 💬</h3><p>Messaging platform connecting creators worldwide.</p></div>
-<div class="project"><h3>ZpotStore 🛒</h3><p>Marketplace for creators to showcase and monetize apps.</p></div>
-<div class="project">
-<h3>ZpotNews 📰</h3>
-<p>Explore the latest news and updates from ZpotLit News.</p>
-<p><a href="https://zpot-lit-news.vercel.app/" target="_blank" style="color:#d62828;">Visit ZpotLit News</a></p>
-</div>
-<div class="project"><h3>ZpotLearn 📚</h3><p>E-learning platform for coding, design, and tutorials with community support.</p></div>
-</section>
-
-<section id="gallery">
-<h1>Gallery</h1>
-<div class="gallery-grid">
-<img src="screenshot1.jpg" alt="Screenshot 1">
-<img src="screenshot2.jpg" alt="Screenshot 2">
-<img src="screenshot3.jpg" alt="Screenshot 3">
-<img src="screenshot4.jpg" alt="Screenshot 4">
-</div>
-</section>
-
-<section id="about">
-<h1>About Us</h1>
-<p>ZpotLit empowers innovators through technology, design, and inspiration. We aim to nurture creativity, provide learning resources, and build a global community of innovators.</p>
-<h2>Mission</h2>
-<p>Our mission is to foster innovation, equip creators with skills and tools, and help transform ideas into real-world digital solutions that positively impact society and communities globally.</p>
-<h2>Vision</h2>
-<p>Our vision is to become a leading platform for global innovation where every creator can turn ideas into impactful experiences, bridging technology, education, and collaboration to make a meaningful difference in the world.</p>
-</section>
-
-<section id="contact">
-<h1>Contact Us</h1>
-<form id="contactForm" action="https://formspree.io/f/xblpppda" method="POST">
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="_replyto" placeholder="Your Email" required>
-<textarea name="message" placeholder="Your Message" required></textarea>
-<button type="submit">Send Message</button>
-<p class="success-msg" id="contactSuccess">Message sent successfully!</p>
-</form>
-
-<h2 style="margin-top:50px;">Suggestion Box</h2>
-<form id="suggestionForm" action="https://formspree.io/f/xblpppda" method="POST">
-<textarea name="suggestion" placeholder="Enter your suggestion..." required></textarea>
-<button type="submit">Submit Suggestion</button>
-<p class="success-msg" id="suggestionSuccess">Suggestion submitted successfully!</p>
-</form>
-</section>
-</main>
-
-<footer>
-<p>© ZpotLit 2025 All Rights Reserved</p>
-<p>📞 +2347014402070 | 📧 solomone393@gmail.com</p>
-</footer>
-
-<!-- Consent Banner -->
-<div id="consentBanner">
-<p>We use cookies to ensure you get the best experience on our website.</p>
-<button onclick="acceptConsent()">Accept</button>
-</div>
+<p id="lastUpdated">Last updated: just now</p>
 
 <script>
-// Sidebar
-const sidebar=document.getElementById('sidebar');
-function openMenu(){sidebar.classList.add('active');}
-function closeMenu(){sidebar.classList.remove('active');}
-function showSection(id){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  closeMenu();
-}
-// Theme
-function toggleTheme(){document.body.classList.toggle('light');}
-// WhatsApp
-function openWhatsApp(){window.open('https://api.whatsapp.com/send?phone=2347014402070&text=Hello ZpotLit!','_blank');}
+// Consent
+const consentBtn = document.getElementById('consent-btn');
+let consentGiven = false;
+consentBtn.onclick = () => {
+  document.getElementById('consent-banner').style.display='none';
+  consentGiven = true;
+  (adsbygoogle = window.adsbygoogle || []).push({});
+};
 
-// Contact Form
-document.getElementById('contactForm').addEventListener('submit', async e=>{
-  e.preventDefault();
-  const form=e.target;
-  const response=await fetch(form.action,{
-    method:'POST',
-    body:new FormData(form),
-    headers:{'Accept':'application/json'}
+// Dark Mode
+const darkToggle = document.getElementById('darkModeToggle');
+darkToggle.onclick = () => {
+  document.body.classList.toggle('dark-mode');
+  darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+};
+
+// Navigation
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.news-section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(btn.dataset.section).classList.add('active');
   });
-  if(response.ok){
-    document.getElementById('contactSuccess').style.display='block';
-    form.reset();
-  } else { alert('Oops! There was a problem.'); }
 });
 
-// Suggestion Form
-document.getElementById('suggestionForm').addEventListener('submit', async e=>{
-  e.preventDefault();
-  const form=e.target;
-  const response=await fetch(form.action,{
-    method:'POST',
-    body:new FormData(form),
-    headers:{'Accept':'application/json'}
+// Sub-tabs
+let currentNG='politics', currentSport='football';
+document.querySelectorAll('[data-ngcat]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-ngcat]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentNG=btn.dataset.ngcat;
+    loadNigeriaNews(currentNG);
   });
-  if(response.ok){
-    document.getElementById('suggestionSuccess').style.display='block';
-    form.reset();
-  } else { alert('Oops! There was a problem.'); }
+});
+document.querySelectorAll('[data-sport]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-sport]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSport=btn.dataset.sport;
+    loadSportsNews(currentSport);
+  });
 });
 
-// Consent Banner and load AdSense after acceptance
-function acceptConsent(){
-  document.getElementById('consentBanner').style.display='none';
-  document.getElementById('adsenseContainer').style.display='block';
+// RSS feeds
+const feeds={
+  global:['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'],
+  africa:['https://www.africanews.com/feed/','https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf'],
+  nigeria:{
+    politics:['https://punchng.com/topics/politics/feed/','https://www.vanguardngr.com/category/politics/feed/'],
+    education:['https://thenationonlineng.net/feed/','https://tribuneonlineng.com/feed/','https://dailypost.ng/feed/'],
+    economy:['https://nairametrics.com/feed/','https://businessday.ng/feed/','https://leadership.ng/feed/']
+  },
+  sports:{
+    football:['http://feeds.bbci.co.uk/sport/football/rss.xml'],
+    basketball:['https://www.espn.com/espn/rss/nba/news'],
+    others:['http://feeds.bbci.co.uk/sport/rss.xml']
+  }
+};
+
+// Time ago
+function timeAgo(dateStr){
+  if(!dateStr)return '';
+  const diff=(new Date()-new Date(dateStr))/1000;
+  const h=Math.floor(diff/3600);
+  const d=Math.floor(diff/86400);
+  return d>0?`${d}d ago`:h>0?`${h}h ago`:`${Math.floor(diff/60)}m ago`;
 }
+
+// Render news with ads
+function renderNews(container,articles){
+  if(!articles.length){container.innerHTML="No articles";return;}
+  const cards=[];
+  articles.slice(0,20).forEach((a,i)=>{
+    const imgTag=a.enclosure?.link||a.thumbnail||a.urlToImage?`<img src="${a.enclosure?.link||a.thumbnail||a.urlToImage}" alt="News Image">`:"";
+    cards.push(`<div class="news-card">${imgTag}<div class="news-card-content"><h3>${a.title}</h3><p class="news-meta">${timeAgo(a.pubDate||a.isoDate||a.publishedAt)}</p><a href="${a.link||a.url}" target="_blank">Read More</a></div></div>`);
+    if((i+1)%5===0 && consentGiven){
+      cards.push(`<ins class="adsbygoogle" style="display:block;margin:1rem 0;" data-ad-client="ca-pub-9702899463803987" data-ad-slot="YOUR_AD_SLOT_HERE" data-ad-format="auto" data-full-width-responsive="true"></ins>`);
+    }
+  });
+  container.innerHTML=cards.join('');
+  if(consentGiven){(adsbygoogle=window.adsbygoogle||[]).push({});}
+}
+
+// Fetch RSS
+async function fetchRSS(url){
+  try{
+    const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+    const res=await fetch(api);
+    const data=await res.json();
+    return (data.items||[]).sort((a,b)=>new Date(b.pubDate||b.isoDate||b.publishedAt)-new Date(a.pubDate||a.isoDate||a.publishedAt));
+  }catch(e){return [];}
+}
+
+// Loaders
+async function loadNigeriaNews(cat){const c=document.getElementById('nigeria-news');let all=[];for(let f of feeds.nigeria[cat]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadSportsNews(cat){const c=document.getElementById('sports-news');let all=[];for(let f of feeds.sports[cat]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadGenericNews(section,id){const c=document.getElementById(id);let all=[];for(let f of feeds[section]||[]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadBreaking(){let headlines=[];for(let u of ['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/']){const items=await fetchRSS(u);headlines=headlines.concat(items.map(i=>i.title));}document.getElementById('ticker').innerHTML=headlines.slice(0,15).join(' • ');}
+
+// Search
+document.getElementById('search-btn').addEventListener('click',async()=>{
+  const q=document.getElementById('search-input').value.trim();if(!q)return alert('Enter a keyword');
+  const sec=document.querySelector('.news-section.active');sec.innerHTML='<div class="news-container">Searching...</div>';
+  const container=sec.querySelector('.news-container');
+  try{
+    const res=await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&apiKey=33caabd445a4487c800ad4edce0ff02c&pageSize=20&sortBy=publishedAt`);
+    const data=await res.json();
+    if(data.articles?.length) renderNews(container,data.articles.map(a=>({title:a.title,link:a.url,thumbnail:a.urlToImage,publishedAt:a.publishedAt})));
+    else container.innerHTML='No results found';
+  }catch(e){container.innerHTML='Error fetching results';}
+});
+
+// Refresh
+document.getElementById('refreshBtn').addEventListener('click',refreshAll);
+async function refreshAll(){
+  await loadBreaking();
+  await loadGenericNews('global','global-news');
+  await loadGenericNews('africa','africa-news');
+  await loadNigeriaNews(currentNG);
+  await loadSportsNews(currentSport);
+  document.getElementById('lastUpdated').textContent="Last updated: "+new Date().toLocaleTimeString();
+}
+
+// Initial load
+refreshAll();
 </script>
 
 </body>
