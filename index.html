@@ -4,11 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ZpotLit News | Breaking & Daily Updates</title>
-
-<!-- ✅ Google AdSense Code Snippet -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9702899463803987"
-     crossorigin="anonymous"></script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9702899463803987" crossorigin="anonymous"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#f4f4f4;color:#222;transition:0.3s;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
@@ -36,6 +32,8 @@ nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ff
 .news-card h3{font-size:1rem;margin-bottom:0.3rem;color:#111;transition:color 0.3s;}
 .news-meta{font-size:0.8rem;color:#555;margin-bottom:0.5rem;transition:color 0.3s;}
 .news-card a{display:inline-block;margin-top:0.4rem;background:#009933;color:#fff;padding:0.4rem 0.7rem;border-radius:6px;text-decoration:none;font-size:0.9rem;transition:background 0.3s,color 0.3s;}
+.ad-card{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px;border:2px solid #009933;border-radius:8px;background:#f0f0f0;}
+.ad-card img,.ad-card video{width:100%;border-radius:8px;}
 .dark-mode{background:#111;color:#eee;}
 .dark-mode header{background:#007a29;}
 .dark-mode nav{background:#222;border-color:#333;}
@@ -56,60 +54,76 @@ nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ff
 .dark-mode .sub-tabs button.active{background:#00b359;color:#fff;}
 #lastUpdated{text-align:center;font-size:0.8rem;color:#666;margin:1rem 0;transition:color 0.3s;}
 .dark-mode #lastUpdated{color:#ccc;}
+#consent-banner{background:#007a29;color:#fff;padding:1rem;text-align:center;position:fixed;bottom:0;width:100%;z-index:3000;display:flex;justify-content:space-between;align-items:center;}
+#consent-btn{background:#fff;color:#007a29;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;}
 </style>
 </head>
 <body>
 
+<!-- Consent Banner -->
+<div id="consent-banner">
+<span>We use cookies and Google Ads to improve your experience. By using this site, you consent to our policies.</span>
+<button id="consent-btn">Got it</button>
+</div>
+
 <div id="breaking-bar">
-  <span id="breaking-title">🗞 BREAKING NEWS:</span>
-  <div id="ticker-wrapper"><div id="ticker">Loading top headlines...</div></div>
+<span id="breaking-title">🗞 BREAKING NEWS:</span>
+<div id="ticker-wrapper"><div id="ticker">Loading top headlines...</div></div>
 </div>
 
 <header>
-  <h1>ZpotLit News</h1>
-  <div>
-    <button id="darkModeToggle">🌙</button>
-    <button id="refreshBtn">⟳ Refresh</button>
-  </div>
+<h1>ZpotLit News</h1>
+<div>
+<button id="darkModeToggle">🌙</button>
+<button id="refreshBtn">⟳ Refresh</button>
+</div>
 </header>
 
 <div id="search-container">
-  <input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections, Sports)">
-  <button id="search-btn">Search</button>
+<input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections, Sports)">
+<button id="search-btn">Search</button>
 </div>
 
 <nav>
-  <button class="active" data-section="global">Global</button>
-  <button data-section="africa">Africa</button>
-  <button data-section="nigeria">Nigeria</button>
-  <button data-section="sports">Sports</button>
+<button class="active" data-section="global">Global</button>
+<button data-section="africa">Africa</button>
+<button data-section="nigeria">Nigeria</button>
+<button data-section="sports">Sports</button>
 </nav>
 
 <section id="global" class="news-section active"><div class="news-container" id="global-news"></div></section>
 <section id="africa" class="news-section"><div class="news-container" id="africa-news"></div></section>
-
 <section id="nigeria" class="news-section">
-  <div class="sub-tabs">
-    <button class="active" data-ngcat="politics">🏛 Politics</button>
-    <button data-ngcat="education">🎓 Education</button>
-    <button data-ngcat="economy">💰 Economy</button>
-  </div>
-  <div class="news-container" id="nigeria-news"></div>
+<div class="sub-tabs">
+<button class="active" data-ngcat="politics">🏛 Politics</button>
+<button data-ngcat="education">🎓 Education</button>
+<button data-ngcat="economy">💰 Economy</button>
+</div>
+<div class="news-container" id="nigeria-news"></div>
 </section>
-
 <section id="sports" class="news-section">
-  <div class="sub-tabs">
-    <button class="active" data-sport="football">⚽ Football</button>
-    <button data-sport="basketball">🏀 Basketball</button>
-    <button data-sport="others">🎾 Others</button>
-  </div>
-  <div class="news-container" id="sports-news"></div>
+<div class="sub-tabs">
+<button class="active" data-sport="football">⚽ Football</button>
+<button data-sport="basketball">🏀 Basketball</button>
+<button data-sport="others">🎾 Others</button>
+</div>
+<div class="news-container" id="sports-news"></div>
 </section>
 
 <p id="lastUpdated">Last updated: just now</p>
 
 <script>
-// Dark Mode Toggle
+// Consent
+const consentBtn = document.getElementById('consent-btn');
+let consentGiven = false;
+consentBtn.onclick = () => {
+  document.getElementById('consent-banner').style.display = 'none';
+  consentGiven = true;
+  // Load ads if needed
+  (adsbygoogle = window.adsbygoogle || []).push({});
+};
+
+// Dark Mode
 const toggle = document.getElementById('darkModeToggle');
 toggle.onclick = () => {
   document.body.classList.toggle('dark-mode');
@@ -145,7 +159,7 @@ document.querySelectorAll('[data-ngcat]').forEach(btn=>{
   });
 });
 
-// RSS Feeds
+// Feeds
 const feeds = {
   global: ['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'],
   africa: ['https://www.africanews.com/feed/','https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf'],
@@ -161,97 +175,45 @@ const feeds = {
   }
 };
 
-function timeAgo(dateStr){
-  if(!dateStr)return'';
-  const diff=(new Date()-new Date(dateStr))/1000;
-  const h=Math.floor(diff/3600);
-  const d=Math.floor(diff/86400);
-  return d>0?`${d}d ago`:h>0?`${h}h ago`:`${Math.floor(diff/60)}m ago`;
-}
+// Time ago
+function timeAgo(dateStr){if(!dateStr)return'';const diff=(new Date()-new Date(dateStr))/1000;const h=Math.floor(diff/3600);const d=Math.floor(diff/86400);return d>0?`${d}d ago`:h>0?`${h}h ago`:`${Math.floor(diff/60)}m ago`;}
 
+// Render News with Ads every 5 articles
 function renderNews(container, articles){
-  if(!articles.length){ container.innerHTML=""; return; }
-  const cards = [];
-  articles.slice(0,20).forEach(a=>{
-    const imgTag = a.enclosure?.link || a.thumbnail || a.urlToImage
-                   ? `<img src="${a.enclosure?.link || a.thumbnail || a.urlToImage}" alt="News Image">`
-                   : "";
-    cards.push(`
-      <div class="news-card">
-        ${imgTag}
-        <div class="news-card-content">
-          <h3>${a.title}</h3>
-          <p class="news-meta">${timeAgo(a.pubDate || a.isoDate || a.publishedAt)}</p>
-          <a href="${a.link || a.url}" target="_blank">Read More</a>
-        </div>
-      </div>
-    `);
+  if(!articles.length){container.innerHTML="";return;}
+  const cards=[];
+  articles.slice(0,20).forEach((a,i)=>{
+    const imgTag = a.enclosure?.link||a.thumbnail||a.urlToImage?`<img src="${a.enclosure?.link||a.thumbnail||a.urlToImage}" alt="News Image">`:"";
+    cards.push(`<div class="news-card">${imgTag}<div class="news-card-content"><h3>${a.title}</h3><p class="news-meta">${timeAgo(a.pubDate||a.isoDate||a.publishedAt)}</p><a href="${a.link||a.url}" target="_blank">Read More</a></div></div>`);
+    // Insert AdSense ad after every 5 articles
+    if ((i+1)%5===0 && consentGiven){
+      cards.push(`<ins class="adsbygoogle" style="display:block;text-align:center;margin:1rem 0;" data-ad-client="ca-pub-9702899463803987" data-ad-slot="YOUR_AD_SLOT_HERE" data-ad-format="auto" data-full-width-responsive="true"></ins>`);
+    }
   });
-  container.innerHTML = cards.join('');
+  container.innerHTML=cards.join('');
+  if(consentGiven){(adsbygoogle=window.adsbygoogle||[]).push({});}
 }
 
 // Loaders
-async function loadNigeriaNews(cat){
-  const c=document.getElementById('nigeria-news');
-  c.innerHTML="";
-  let all=[];
-  for(let f of feeds.nigeria[cat]) all=all.concat(await fetchRSS(f));
-  renderNews(c,all);
-}
-async function loadGenericNews(section,id){
-  const c=document.getElementById(id);
-  c.innerHTML="";
-  let all=[];
-  for(let f of feeds[section]||[]) all=all.concat(await fetchRSS(f));
-  renderNews(c,all);
-}
-async function loadSportsNews(cat){
-  const c=document.getElementById('sports-news');
-  c.innerHTML="";
-  let all=[];
-  for(let f of feeds.sports[cat]) all=all.concat(await fetchRSS(f));
-  renderNews(c,all);
-}
-
-// Fetch RSS
-async function fetchRSS(url){
-  const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
-  try{
-    const r=await fetch(api);
-    const d=await r.json();
-    return (d.items||[]).sort((a,b)=>new Date(b.pubDate||b.isoDate||b.publishedAt)-new Date(a.pubDate||a.isoDate||a.publishedAt));
-  }catch(e){return[];}
-}
+async function loadNigeriaNews(cat){const c=document.getElementById('nigeria-news');c.innerHTML="";let all=[];for(let f of feeds.nigeria[cat]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadGenericNews(section,id){const c=document.getElementById(id);c.innerHTML="";let all=[];for(let f of feeds[section]||[]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadSportsNews(cat){const c=document.getElementById('sports-news');c.innerHTML="";let all=[];for(let f of feeds.sports[cat]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function fetchRSS(url){const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;try{const r=await fetch(api);const d=await r.json();return(d.items||[]).sort((a,b)=>new Date(b.pubDate||b.isoDate||b.publishedAt)-new Date(a.pubDate||a.isoDate||a.publishedAt));}catch(e){return[];}}
 
 // Breaking
-async function loadBreaking(){
-  const urls=['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/'];
-  let headlines=[];
-  for(let u of urls){const items=await fetchRSS(u);headlines=headlines.concat(items.map(i=>i.title));}
-  document.getElementById('ticker').innerHTML=headlines.slice(0,15).join(' • ');
-}
+async function loadBreaking(){const urls=['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/'];let headlines=[];for(let u of urls){const items=await fetchRSS(u);headlines=headlines.concat(items.map(i=>i.title));}document.getElementById('ticker').innerHTML=headlines.slice(0,15).join(' • ');}
 
 // Search
 document.getElementById('search-btn').addEventListener('click',async()=>{
-  const q=document.getElementById('search-input').value.trim();
-  if(!q)return alert('Enter a keyword');
-  const container=document.createElement('div');
-  container.classList.add('news-container');
-  const sec=document.querySelector('.news-section.active');
-  sec.innerHTML='';
-  sec.appendChild(container);
+  const q=document.getElementById('search-input').value.trim();if(!q)return alert('Enter a keyword');
+  const container=document.createElement('div');container.classList.add('news-container');
+  const sec=document.querySelector('.news-section.active');sec.innerHTML='';sec.appendChild(container);
   container.innerHTML='<p>Searching...</p>';
   const url=`https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&apiKey=33caabd445a4487c800ad4edce0ff02c&pageSize=20&sortBy=publishedAt`;
-  try{
-    const res=await fetch(url);
-    const data=await res.json();
-    if(data.articles?.length){
-      renderNews(container,data.articles.map(a=>({title:a.title,link:a.url,thumbnail:a.urlToImage,publishedAt:a.publishedAt})));
-    }else container.innerHTML='';
-  }catch(e){container.innerHTML='';}
+  try{const res=await fetch(url);const data=await res.json();if(data.articles?.length){renderNews(container,data.articles.map(a=>({title:a.title,link:a.url,thumbnail:a.urlToImage,publishedAt:a.publishedAt})));}else container.innerHTML='';}catch(e){container.innerHTML='';}
 });
 
-// Manual refresh
+// Refresh
 document.getElementById('refreshBtn').addEventListener('click',refreshAll);
 async function refreshAll(){
   await loadBreaking();
@@ -264,26 +226,6 @@ async function refreshAll(){
 
 // Initial load
 refreshAll();
-</script>
-<div id="consent-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#009933;color:#fff;padding:1rem;text-align:center;z-index:9999;font-size:0.9rem;">
-  <p>
-    We use cookies and similar technologies to personalize content, deliver relevant ads, and analyze our traffic. 
-    By continuing to browse ZpotLit News, you agree to our use of cookies in accordance with our 
-    <a href="/privacy-policy" style="color:#fff;text-decoration:underline;">Privacy Policy</a>.
-  </p>
-  <button id="accept-consent" style="background:#fff;color:#009933;border:none;padding:0.4rem 1rem;margin-top:0.5rem;border-radius:8px;font-weight:600;cursor:pointer;">
-    Accept & Continue
-  </button>
-</div>
-
-<script>
-  const consentBanner = document.getElementById('consent-banner');
-  const acceptBtn = document.getElementById('accept-consent');
-  if (localStorage.getItem('zpotlit_consent')) consentBanner.style.display = 'none';
-  acceptBtn.addEventListener('click', () => {
-    localStorage.setItem('zpotlit_consent', 'yes');
-    consentBanner.style.display = 'none';
-  });
 </script>
 </body>
 </html>
