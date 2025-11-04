@@ -2,1693 +2,273 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZPOTHUB | Your Centre Hub for Knowledge</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZPOTHUB News | Breaking News</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LH706MV0CD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LH706MV0CD');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9702899463803987" crossorigin="anonymous"></script>
 <style>
-:root {
-  --bg-color: #fff;
-  --text-color: #111;
-  --header-bg: #0077ff;
-  --card-bg: #f9f9f9;
-}
-[data-theme="dark"] {
-  --bg-color: #111;
-  --text-color: #f5f5f5;
-  --header-bg: #0047a0;
-  --card-bg: #1a1a1a;
-}
-* { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif;}
-body { background: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-header {
-  background: var(--header-bg);
-  color: #fff;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky; top:0; z-index:1000;
-}
-header h1 { font-size:1.8rem; }
-header button {
-  padding:8px 12px; cursor:pointer; background:#fff; color:var(--header-bg);
-  border:none; border-radius:5px; font-weight:bold;
-}
-nav {
-  display:flex; flex-wrap:wrap; justify-content:center;
-  background: var(--card-bg); padding:10px 0; position:sticky; top:60px; z-index:999;
-}
-nav a { margin:5px 10px; text-decoration:none; color:var(--text-color); font-weight:bold; transition:color 0.3s; }
-nav a:hover { color: var(--header-bg); }
-.container { max-width:1200px; margin:20px auto; padding:0 15px; }
-.section { margin-bottom:50px; }
-.section h2 { margin-bottom:15px; font-size:1.5rem; border-bottom:2px solid var(--header-bg); padding-bottom:5px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
-.card { background: var(--card-bg); border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
-.card:hover { transform:scale(1.03); box-shadow:0 4px 12px rgba(0,0,0,0.2); }
-.card-content { padding:15px; }
-.card-content h3 { margin-bottom:10px; font-size:1.1rem; }
-.card-content p { font-size:0.9rem; }
-.card-content a { display:inline-block; margin-top:10px; text-decoration:none; color: var(--header-bg); font-weight:bold; }
-footer { text-align:center; padding:20px; background: var(--header-bg); color:#fff; margin-top:30px; }
-@media(max-width:768px){ header h1{font-size:1.5rem;} nav a{margin:5px;font-size:0.9rem;} }
+/* Reset & base */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f4f4f4;color:#222;transition:0.3s;overflow-x:hidden;}
+.dark-mode{background:#111;color:#eee;}
+.dark-mode header{background:#007a29;}
+.dark-mode nav{background:#222;border-color:#333;}
+.dark-mode nav button{background:#222;color:#ccc;}
+.dark-mode nav button.active{color:#00ff99;background:#333;border-color:#00ff99;}
+.dark-mode .news-card{background:#1e1e1e;box-shadow:none;}
+.dark-mode .news-card h3{color:#eee;}
+.dark-mode .news-meta{color:#ccc;}
+.dark-mode .news-card a{background:#00b359;color:#fff;}
+.dark-mode #search-container{background:#222;border-color:#333;}
+.dark-mode #search-input{background:#333;color:#eee;border-color:#555;}
+.dark-mode #search-input::placeholder{color:#aaa;}
+.dark-mode #ticker{color:#00ff99;}
+
+/* Breaking news ticker */
+#breaking-bar{background:#009933;color:#fff;overflow:hidden;position:sticky;top:0;z-index:2000;display:flex;align-items:center;}
+#breaking-title{background:#007a29;padding:0.5rem 1rem;font-weight:600;flex-shrink:0;}
+#ticker-wrapper{overflow:hidden;flex:1;position:relative;height:2rem;display:flex;align-items:center;}
+#ticker{display:inline-block;white-space:nowrap;position:absolute;animation:scroll-left 200s linear infinite;color:#fff;}
+@keyframes scroll-left{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+
+/* Header */
+header{background:#009933;color:#fff;text-align:center;padding:1rem;font-size:1.4rem;font-weight:600;position:sticky;top:30px;z-index:1000;display:flex;justify-content:space-between;align-items:center;}
+#darkModeToggle,#refreshBtn{background:#fff;color:#009933;border:none;padding:0.4rem 0.7rem;border-radius:8px;font-weight:600;cursor:pointer;margin-left:0.5rem;}
+
+/* Search */
+#search-container{background:#fff;padding:0.6rem;display:flex;justify-content:center;align-items:center;gap:0.4rem;border-bottom:2px solid #ddd;}
+#search-input{width:75%;padding:0.6rem;border:2px solid #ccc;border-radius:8px;color:#222;background:#fff;}
+#search-input::placeholder{color:#888;}
+#search-btn{background:#009933;color:#fff;border:none;padding:0.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;}
+
+/* Navigation tabs */
+nav{display:flex;justify-content:space-around;background:#fff;border-bottom:2px solid #ddd;flex-wrap:wrap;}
+nav button{flex:1;padding:0.8rem 0;border:none;background:#fff;font-weight:600;color:#555;cursor:pointer;transition:0.3s;}
+nav button.active{color:#009933;border-bottom:3px solid #009933;background:#e8ffe8;}
+
+/* News sections */
+.news-section{display:none;padding:1rem;}
+.news-section.active{display:block;}
+.news-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
+.news-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s, background 0.3s;}
+.news-card:hover{transform:translateY(-4px);}
+.news-card img{width:100%;height:180px;object-fit:cover;}
+.news-card-content{padding:0.8rem;}
+.news-card h3{font-size:1rem;margin-bottom:0.3rem;color:#111;transition:color 0.3s;}
+.news-meta{font-size:0.8rem;color:#555;margin-bottom:0.5rem;transition:color 0.3s;}
+.news-card a{display:inline-block;margin-top:0.4rem;background:#009933;color:#fff;padding:0.4rem 0.7rem;border-radius:6px;text-decoration:none;font-size:0.9rem;transition:background 0.3s,color 0.3s;}
+
+/* Sub-tabs */
+.sub-tabs{display:flex;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
+.sub-tabs button{background:#eee;border:none;padding:0.6rem 1rem;margin:0.2rem;font-weight:600;border-radius:8px;cursor:pointer;transition:0.3s;}
+.sub-tabs button.active{background:#009933;color:#fff;}
+.dark-mode .sub-tabs button{background:#222;color:#ccc;}
+.dark-mode .sub-tabs button.active{background:#00b359;color:#fff;}
+
+/* Footer info */
+#lastUpdated{text-align:center;font-size:0.8rem;color:#666;margin:1rem 0;transition:color 0.3s;}
+.dark-mode #lastUpdated{color:#ccc;}
+
+/* Consent banner */
+#consent-banner{background:#007a29;color:#fff;padding:1rem;text-align:center;position:fixed;bottom:0;width:100%;z-index:3000;display:flex;justify-content:space-between;align-items:center;}
+#consent-btn{background:#fff;color:#007a29;border:none;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;}
 </style>
 </head>
-<body data-theme="light">
+<body>
+
+<!-- Consent Banner -->
+<div id="consent-banner">
+<span>We use cookies and Google Ads to improve your experience. By using this site, you consent to our policies.</span>
+<button id="consent-btn">Got it</button>
+</div>
+
+<!-- Breaking news ticker -->
+<div id="breaking-bar">
+<span id="breaking-title">🗞 BREAKING NEWS:</span>
+<div id="ticker-wrapper"><div id="ticker">Loading top headlines...</div></div>
+</div>
 
 <header>
-  <h1>ZPOTHUB Articles</h1>
-  <button id="themeToggle">Dark Mode</button>
+<h1>ZpotLit News</h1>
+<div>
+<button id="darkModeToggle">🌙</button>
+<button id="refreshBtn">⟳ Refresh</button>
+</div>
 </header>
 
+<!-- Search -->
+<div id="search-container">
+<input type="text" id="search-input" placeholder="Search news (e.g. AI, Elections, Sports)">
+<button id="search-btn">Search</button>
+</div>
+
+<!-- Navigation tabs -->
 <nav>
-  <a href="#technology">Technology</a>
-  <a href="#productivity">Productivity</a>
-  <a href="#artificialintelligence">Artificial Intelligence</a>
-  <a href="#business">Business</a>
-  <a href="#health">Health</a>
-  <a href="#sports">Sports</a>
-  <a href="#entertainment">Entertainment</a>
-  <a href="#culture">Culture</a>
-  <a href="#mentorship">Mentorship</a>
-  <a href="#romance">Romance</a>
-  <a href="#sex-life">Sex-Life</a>
-  <a href="#business-finance">Business & Finance</a>
-  <a href="#fashion">Fashion</a>
-  <a href="#relationship-with-god">Relationship with God</a>
-  <a href="#politics">Politics</a>
-  <a href="#economy">Economy</a>
-  <a href="#lifestyle">Lifestyle</a>
-  <a href="#food-diets">Food & Diets</a>
+<button class="active" data-section="global">Global</button>
+<button data-section="africa">Africa</button>
+<button data-section="nigeria">Nigeria</button>
+<button data-section="sports">Sports</button>
 </nav>
 
-<div class="container">
-
-<!-- Section 1: Technology (real articles) -->
-<div class="section" id="technology">
-  <h2>Technology</h2>
-  <div class="grid">
-    <div class="card"><div class="card-content"><h3>Tech Trends 2025: AI is Everywhere</h3><p>How AI, spatial computing, and next-gen hardware are reshaping the tech landscape.</p><a href="https://www2.deloitte.com/us/en/insights/focus/tech-trends.html" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>Top 10 Emerging Technologies of 2025</h3><p>Breakthrough innovations such as osmotic power, advanced nuclear, and engineered therapeutics.</p><a href="https://www.weforum.org/publications/top-10-emerging-technologies-of-2025/" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>Gartner’s Top Technology Trends for 2025</h3><p>Agentic AI, post-quantum cryptography, and spatial computing trends for enterprises.</p><a href="https://www.gartner.com/en/articles/top-technology-trends-2025" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>25 New Technology Trends for 2025</h3><p>Comprehensive guide including IoT, 6G, quantum computing, and XR.</p><a href="https://www.geeksforgeeks.org/blogs/top-new-technology-trends/" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>Top Tech Trends of 2025: AI-Powered Everything</h3><p>How AI, blockchain, and satellite networks are converging globally.</p><a href="https://www.capgemini.com/insights/research-library/top-tech-trends-2025/" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>The Future of Technology: Key Trends to Watch</h3><p>Focus on open-source LLMs, generative AI, and democratized innovation.</p><a href="https://www.alizila.com/the-future-of-technology-key-trends-to-watch-in-2025/" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>The 2025 AI Index Report</h3><p>AI’s performance, impact, and integration into daily life summarized in one report.</p><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>Technology Trends That Will Revolutionize 2025</h3><p>Deep dive into agentic AI, quantum security, and human-machine convergence.</p><a href="https://www.plainconcepts.com/technology-trends-2025/" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>Innovation Experts Predict Top Tech Trends for 2025</h3><p>Thought-leader forecasts including AI, nuclear fusion, and quantum technologies.</p><a href="https://www.uc.edu/news/articles/2025/01/innovation-experts-predict-top-tech-trends-for-2025.html" target="_blank">Read More →</a></div></div>
-    <div class="card"><div class="card-content"><h3>20/25 Vision: Technology Trends That Will Define 2025</h3><p>How AI, data governance, and sustainability converge to shape the future.</p><a href="https://blogs.cisco.com/news/20-25-vision-a-clear-look-at-the-technology-trends-that-will-define-2025" target="_blank">Read More →</a></div></div>
-  </div>
+<!-- News Sections -->
+<section id="global" class="news-section active"><div class="news-container" id="global-news"></div></section>
+<section id="africa" class="news-section"><div class="news-container" id="africa-news"></div></section>
+<section id="nigeria" class="news-section">
+<div class="sub-tabs">
+<button class="active" data-ngcat="politics">🏛 Politics</button>
+<button data-ngcat="education">🎓 Education</button>
+<button data-ngcat="economy">💰 Economy</button>
 </div>
-
-<!-- Section 2: Productivity -->
-<div class="section" id="productivity">
-  <h2>Productivity</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>10 Productivity Tips for 2025</h3>
-        <p>Proven strategies to boost efficiency at work and in daily life.</p>
-        <a href="https://www.forbes.com/sites/forbescoachescouncil/2025/01/10/10-productivity-tips-for-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Science of Productivity</h3>
-        <p>How neuroscience and habits influence performance and focus.</p>
-        <a href="https://www.apa.org/monitor/2025/01/science-productivity" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Remote Work Productivity Hacks</h3>
-        <p>Best practices for working efficiently from home or hybrid setups.</p>
-        <a href="https://hbr.org/2025/02/remote-work-productivity" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Time Management Techniques That Work</h3>
-        <p>Methods like time-blocking, Pomodoro, and prioritization for peak output.</p>
-        <a href="https://www.mindtools.com/pages/article/newHTE_00.htm" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI Tools to Boost Productivity in 2025</h3>
-        <p>How AI assistants, task automation, and smart apps can save hours daily.</p>
-        <a href="https://www.techradar.com/news/ai-tools-to-boost-productivity" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Productivity-Health Connection</h3>
-        <p>Why balancing work, rest, and wellness is critical for long-term efficiency.</p>
-        <a href="https://www.healthline.com/health/productivity" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Productivity Myths Debunked</h3>
-        <p>Common misconceptions about multitasking, long hours, and “busy work.”</p>
-        <a href="https://www.inc.com/guides/productivity-myths.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Mastering Focus in a Distracted World</h3>
-        <p>Techniques to minimize distractions and improve deep work.</p>
-        <a href="https://www.calm.com/blog/focus-and-productivity" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Leadership and Productivity</h3>
-        <p>How leaders can foster productive teams through culture and tools.</p>
-        <a href="https://www.gallup.com/workplace/236441/leadership-productivity.aspx" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Productivity Trends for 2025</h3>
-        <p>Emerging tools, AI, and work practices shaping efficiency in the modern workplace.</p>
-        <a href="https://www.forbes.com/sites/forbestechcouncil/2025/01/23/productivity-trends-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
+<div class="news-container" id="nigeria-news"></div>
+</section>
+<section id="sports" class="news-section">
+<div class="sub-tabs">
+<button class="active" data-sport="football">⚽ Football</button>
+<button data-sport="basketball">🏀 Basketball</button>
+<button data-sport="others">🎾 Others</button>
 </div>
-<!-- Section 3: Artificial Intelligence -->
-<div class="section" id="artificialintelligence">
-  <h2>Artificial Intelligence</h2>
-  <div class="grid">
+<div class="news-container" id="sports-news"></div>
+</section>
 
-    <div class="card">
-      <div class="card-content">
-        <h3>The 2025 AI Index Report</h3>
-        <p>Stanford’s comprehensive report on AI’s progress, applications, and societal impact.</p>
-        <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank">Read More →</a>
-      </div>
-    </div>
+<p id="lastUpdated">Last updated: just now</p>
 
-    <div class="card">
-      <div class="card-content">
-        <h3>AI Trends to Watch in 2025</h3>
-        <p>Emerging trends including generative AI, agentic AI, and AI in healthcare.</p>
-        <a href="https://www.gartner.com/en/articles/top-ai-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How AI is Reshaping Industries</h3>
-        <p>A look at AI transforming finance, manufacturing, and logistics.</p>
-        <a href="https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/the-state-of-ai-in-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Future of Generative AI</h3>
-        <p>How generative AI is being used for content creation, design, and simulations.</p>
-        <a href="https://www.forbes.com/sites/forbestechcouncil/2025/01/20/the-future-of-generative-ai/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Ethics and AI: What to Expect</h3>
-        <p>Challenges around bias, governance, and responsible AI implementation.</p>
-        <a href="https://www.brookings.edu/research/ethics-and-ai-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI in Healthcare: Innovations 2025</h3>
-        <p>Advances in diagnostics, drug discovery, and personalized medicine with AI.</p>
-        <a href="https://www.healthit.gov/topic/scientific-initiatives/ai-healthcare" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI and Automation in the Workplace</h3>
-        <p>How AI will augment jobs, improve productivity, and create new roles.</p>
-        <a href="https://hbr.org/2025/03/ai-and-automation-in-the-workplace" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Open-Source AI in 2025</h3>
-        <p>Growth of open-source AI tools and collaborative platforms for innovation.</p>
-        <a href="https://opensource.com/article/25/01/open-source-ai-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI and National Security</h3>
-        <p>Applications and risks of AI in defense, cybersecurity, and intelligence.</p>
-        <a href="https://www.cfr.org/report/ai-and-national-security-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI-Powered Creativity and Art</h3>
-        <p>How AI is enabling artists, designers, and musicians to innovate.</p>
-        <a href="https://www.wired.com/story/ai-art-creativity-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 4: Business -->
-<div class="section" id="business">
-  <h2>Business</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Top Business Trends to Watch in 2025</h3>
-        <p>Insights into global business strategies, digital transformation, and growth sectors.</p>
-        <a href="https://www.forbes.com/sites/forbesbusinesscouncil/2025/01/10/top-business-trends-to-watch-in-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Future of Business in a Post-Pandemic World</h3>
-        <p>How companies are adapting to remote work, AI, and new consumer behaviors.</p>
-        <a href="https://hbr.org/2025/02/the-future-of-business-in-a-post-pandemic-world" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Digital Transformation Trends 2025</h3>
-        <p>Key technologies driving digital transformation across industries.</p>
-        <a href="https://www.mckinsey.com/business-functions/digital-mckinsey/our-insights/digital-transformation-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Leadership Lessons for Modern Businesses</h3>
-        <p>Strategies and skills required for leaders in dynamic markets.</p>
-        <a href="https://www.inc.com/guides/leadership-lessons-2025.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Sustainable Business Practices in 2025</h3>
-        <p>How businesses integrate ESG principles and sustainability initiatives.</p>
-        <a href="https://www.weforum.org/agenda/2025/01/sustainable-business-practices/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI in Business: Opportunities and Challenges</h3>
-        <p>Ways AI is transforming business operations, customer engagement, and analytics.</p>
-        <a href="https://www.forbes.com/sites/forbestechcouncil/2025/03/ai-in-business-opportunities-and-challenges/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Entrepreneurship Trends for 2025</h3>
-        <p>Emerging sectors, funding opportunities, and startup innovations to watch.</p>
-        <a href="https://www.entrepreneur.com/article/technology-entrepreneurship-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Global Business Outlook 2025</h3>
-        <p>Macro trends, trade developments, and industry forecasts shaping the business landscape.</p>
-        <a href="https://www.pwc.com/gx/en/services/consulting/global-business-outlook-2025.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>E-Commerce Growth and Strategies</h3>
-        <p>Insights on e-commerce expansion, consumer behavior, and digital marketing.</p>
-        <a href="https://www.shopify.com/enterprise/ecommerce-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Business Innovation: The Next Decade</h3>
-        <p>Innovations that will redefine competitive advantage and business models.</p>
-        <a href="https://www2.deloitte.com/us/en/pages/strategy-operations/articles/business-innovation-2025.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 5: Health -->
-<div class="section" id="health">
-  <h2>Health</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Top Health Trends of 2025</h3>
-        <p>From mental wellness tech to personalized medicine—here’s what’s shaping global health.</p>
-        <a href="https://www.forbes.com/sites/forbeshealth/2025/01/10/top-health-trends-of-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Future of Preventive Healthcare</h3>
-        <p>How early detection, wearable devices, and AI are transforming healthcare systems.</p>
-        <a href="https://www.who.int/news-room/feature-stories/detail/the-future-of-preventive-healthcare" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Nutrition and Immunity: What’s New in 2025</h3>
-        <p>Updated research on diets that enhance immunity and energy levels.</p>
-        <a href="https://www.healthline.com/nutrition/nutrition-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Mental Health in the Digital Age</h3>
-        <p>The effects of social media, screen time, and stress on mental well-being.</p>
-        <a href="https://www.apa.org/news/press/releases/2025/02/mental-health-digital-age" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Fitness Revolution: Smart Workouts in 2025</h3>
-        <p>The rise of AI-powered fitness plans and virtual personal training.</p>
-        <a href="https://www.menshealth.com/fitness/a12345/smart-workout-trends-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Role of Sleep in Health Optimization</h3>
-        <p>Why sleep is the foundation of good health and productivity.</p>
-        <a href="https://www.sleepfoundation.org/sleep-hygiene/sleep-health-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Healthcare Innovation with AI and Robotics</h3>
-        <p>How intelligent systems are improving diagnosis, surgery, and patient care.</p>
-        <a href="https://hbr.org/2025/03/healthcare-innovation-with-ai-and-robotics" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Nutrition Myths Debunked by Science</h3>
-        <p>Clearing up misconceptions about carbs, fats, and supplements.</p>
-        <a href="https://www.medicalnewstoday.com/articles/nutrition-myths-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Global Health Challenges and Solutions</h3>
-        <p>The top challenges in global healthcare and the innovations solving them.</p>
-        <a href="https://www.weforum.org/agenda/2025/02/global-health-innovation/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Build Lifelong Healthy Habits</h3>
-        <p>Small, sustainable changes that create lasting health transformation.</p>
-        <a href="https://www.cdc.gov/healthyhabits/2025-guide.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 6: Mentorship -->
-<div class="section" id="mentorship">
-  <h2>Mentorship</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Power of Mentorship in Career Growth</h3>
-        <p>How mentors accelerate personal and professional development across industries.</p>
-        <a href="https://www.forbes.com/sites/ashleystahl/2024/12/14/the-power-of-mentorship-in-career-growth/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Finding the Right Mentor for Your Journey</h3>
-        <p>Key steps to identifying and building meaningful mentor-mentee relationships.</p>
-        <a href="https://www.indeed.com/career-advice/career-development/how-to-find-a-mentor" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Be an Effective Mentor</h3>
-        <p>Learn how to guide, inspire, and support others toward success.</p>
-        <a href="https://hbr.org/2023/06/how-to-be-a-better-mentor" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Role of Mentorship in Entrepreneurship</h3>
-        <p>Why every startup founder needs a mentor — and how to find one.</p>
-        <a href="https://www.entrepreneur.com/leadership/the-role-of-mentorship-in-startup-success/450865" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Building a Mentorship Culture in Organizations</h3>
-        <p>How companies can create structures that foster learning and growth.</p>
-        <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/mentorship-culture-in-the-workplace" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Lessons from Great Mentors in History</h3>
-        <p>Timeless mentorship examples — from Socrates to Steve Jobs.</p>
-        <a href="https://www.success.com/7-lessons-from-great-mentors-in-history/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Virtual Mentorship: Connecting in the Digital Age</h3>
-        <p>How to build strong mentoring relationships online and across distances.</p>
-        <a href="https://www.linkedin.com/pulse/future-mentorship-digital-age-virtual-guidance/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Mentorship Builds Leadership Skills</h3>
-        <p>Discover how mentors create leaders through shared vision and accountability.</p>
-        <a href="https://www.forbes.com/sites/forbescoachescouncil/2024/07/25/how-mentorship-builds-leadership-skills/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Reverse Mentoring: Learning from the Next Generation</h3>
-        <p>Why senior professionals are embracing mentorship from younger voices.</p>
-        <a href="https://hbr.org/2022/04/the-benefits-of-reverse-mentoring" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Mentorship vs Coaching: Knowing the Difference</h3>
-        <p>Understand how mentorship differs from coaching — and when to seek each.</p>
-        <a href="https://www.coursera.org/articles/mentoring-vs-coaching" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 7: Romance -->
-<div class="section" id="romance">
-  <h2>Romance</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Science of Lasting Love</h3>
-        <p>What neuroscience reveals about how long-term romantic bonds are formed and maintained.</p>
-        <a href="https://www.psychologytoday.com/us/blog/the-new-love-within/2024/12/the-science-of-lasting-love" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Modern Dating in a Digital World</h3>
-        <p>How dating apps and online culture have redefined romantic relationships in 2025.</p>
-        <a href="https://www.nytimes.com/guides/fashion/modern-love" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Build Emotional Intimacy</h3>
-        <p>Practical steps to deepen emotional connection and trust with your partner.</p>
-        <a href="https://www.healthline.com/health/relationships/how-to-build-emotional-intimacy" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Signs of a Healthy Relationship</h3>
-        <p>Learn what defines mutual respect, communication, and healthy boundaries in love.</p>
-        <a href="https://www.verywellmind.com/signs-of-a-healthy-relationship-5209052" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Role of Forgiveness in Love</h3>
-        <p>Why forgiveness is crucial for healing and maintaining long-term relationships.</p>
-        <a href="https://www.psychologytoday.com/us/blog/compassion-matters/2024/05/the-role-of-forgiveness-in-love" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Keeping Romance Alive After Years Together</h3>
-        <p>Tips to reignite passion and maintain connection in long-term relationships.</p>
-        <a href="https://www.oprahdaily.com/life/relationships/a29714666/how-to-keep-romance-alive/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Love Languages Impact Relationships</h3>
-        <p>Understanding and speaking your partner’s love language for stronger bonds.</p>
-        <a href="https://www.gottman.com/blog/understanding-love-languages/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Why Self-Love Comes First</h3>
-        <p>Before loving someone else, learn to value and nurture yourself.</p>
-        <a href="https://www.healthline.com/health/relationships/self-love" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Overcoming Heartbreak: Healing After Loss</h3>
-        <p>Expert-backed ways to rebuild confidence and open your heart again after a breakup.</p>
-        <a href="https://www.webmd.com/sex-relationships/features/how-to-heal-after-a-breakup" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Romantic Gestures That Truly Matter</h3>
-        <p>It’s not about grand gifts — learn the small actions that show deep affection.</p>
-        <a href="https://www.brides.com/story/romantic-gestures" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 8: Food & Diets -->
-<div class="section" id="food-diets">
-  <h2>Food & Diets</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Top 10 Global Food Trends in 2025</h3>
-        <p>From plant-based innovations to sustainable proteins — see what’s shaping the future of food.</p>
-        <a href="https://www.forbes.com/sites/forbesbusinesscouncil/2025/01/12/top-10-global-food-trends-in-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Mediterranean Diet: Still the Gold Standard</h3>
-        <p>Why nutritionists continue to recommend the Mediterranean diet for longevity and heart health.</p>
-        <a href="https://www.healthline.com/nutrition/mediterranean-diet-meal-plan" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Intermittent Fasting: Benefits and Myths</h3>
-        <p>What science says about fasting for weight management and metabolic health.</p>
-        <a href="https://www.medicalnewstoday.com/articles/intermittent-fasting" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Plant-Based Eating: A Beginner’s Guide</h3>
-        <p>Simple steps to transition toward a more plant-forward, nutritious lifestyle.</p>
-        <a href="https://www.eatingwell.com/article/8015087/plant-based-diet-beginners-guide/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Gut Health Affects Everything You Eat</h3>
-        <p>Understanding the gut microbiome and its link to mood, digestion, and immunity.</p>
-        <a href="https://www.bbc.com/future/article/20240710-gut-health-and-diet-connection" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Low-Carb vs Low-Fat: Which Works Better?</h3>
-        <p>New research compares the effectiveness of popular diet plans for sustainable health.</p>
-        <a href="https://www.nih.gov/news-events/nih-research-matters/low-carb-vs-low-fat-diets" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Truth About Superfoods</h3>
-        <p>Experts weigh in on whether foods like kale, quinoa, and chia deserve their hype.</p>
-        <a href="https://www.nytimes.com/guides/well/superfoods" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Mindful Eating: Transform Your Relationship with Food</h3>
-        <p>How slowing down and savoring can improve both nutrition and mental well-being.</p>
-        <a href="https://www.psychologytoday.com/us/blog/eating-mindfully/2024/10/what-is-mindful-eating" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Hydration and Nutrition: The Forgotten Connection</h3>
-        <p>How water intake influences energy, metabolism, and appetite control.</p>
-        <a href="https://www.cdc.gov/healthyweight/healthy_eating/water-and-nutrition.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Build a Sustainable Diet</h3>
-        <p>Eat well while protecting the planet — balancing health, taste, and sustainability.</p>
-        <a href="https://www.un.org/en/climatechange/science/climate-friendly-diet" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 9: Relationship with God -->
-<div class="section" id="relationship-with-god">
-  <h2>Relationship with God</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Build a Closer Relationship with God</h3>
-        <p>Practical ways to grow in faith, prayer, and trust in God’s plan for your life.</p>
-        <a href="https://www.crosswalk.com/faith/spiritual-life/how-to-build-a-closer-relationship-with-god.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Hearing God’s Voice in a Busy World</h3>
-        <p>Learning to discern God’s guidance amid life’s distractions and noise.</p>
-        <a href="https://www.desiringgod.org/articles/how-to-hear-gods-voice" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Power of Daily Prayer</h3>
-        <p>Why consistent prayer transforms your heart, focus, and spiritual strength.</p>
-        <a href="https://billygraham.org/story/the-power-of-prayer/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Faith Over Fear: Trusting God in Uncertain Times</h3>
-        <p>How to rely on divine promises even when life feels unstable or confusing.</p>
-        <a href="https://www.guideposts.org/faith-in-daily-life/faith-over-fear" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Understanding God’s Purpose for You</h3>
-        <p>Finding meaning and direction through scripture and prayerful reflection.</p>
-        <a href="https://www.christianity.com/wiki/god/what-is-gods-purpose-for-my-life.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Overcoming Spiritual Dryness</h3>
-        <p>What to do when you feel distant from God and how to restore your faith connection.</p>
-        <a href="https://www.cru.org/us/en/train-and-grow/spiritual-growth/how-to-overcome-spiritual-dryness.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Faith and Action: Living Out God’s Word</h3>
-        <p>Why true faith leads to service, compassion, and transformation.</p>
-        <a href="https://www.biblestudytools.com/bible-study/topical-studies/living-out-your-faith.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Role of Worship in Building Faith</h3>
-        <p>How worship renews your spirit and deepens your relationship with God.</p>
-        <a href="https://www.focusonthefamily.com/faith/the-power-of-worship/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Forgiveness: The Heart of God’s Love</h3>
-        <p>Understanding how forgiving others strengthens your walk with Christ.</p>
-        <a href="https://www.desiringgod.org/articles/forgive-as-god-in-christ-forgave-you" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Growing Spiritually Every Day</h3>
-        <p>Daily habits and reflections that nurture your relationship with the Creator.</p>
-        <a href="https://www.crosswalk.com/faith/spiritual-life/7-ways-to-grow-spiritually.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 10: Business & Finance -->
-<div class="section" id="business-finance">
-  <h2>Business & Finance</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Global Economic Outlook for 2025</h3>
-        <p>Analysts project moderate growth and AI-driven productivity gains amid inflation control efforts.</p>
-        <a href="https://www.weforum.org/agenda/2025/01/global-economy-outlook-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Future of Work and Remote Business Models</h3>
-        <p>How hybrid systems and digital tools are reshaping business operations worldwide.</p>
-        <a href="https://hbr.org/2024/10/the-future-of-work-rethinking-remote-business-models" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Small Businesses Can Thrive in 2025</h3>
-        <p>Practical strategies for entrepreneurs to scale sustainably in changing markets.</p>
-        <a href="https://www.entrepreneur.com/business-news/small-business-trends-2025/460325" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Investing in the Age of Artificial Intelligence</h3>
-        <p>What investors need to know about AI-driven innovation and automation stocks.</p>
-        <a href="https://www.forbes.com/sites/qai/2025/02/10/investing-in-ai-what-to-know-in-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Personal Finance Tips for Financial Freedom</h3>
-        <p>Simple ways to save smarter, invest wisely, and plan for long-term security.</p>
-        <a href="https://www.investopedia.com/articles/personal-finance/financial-freedom-guide.asp" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Cryptocurrency Regulation in 2025</h3>
-        <p>Governments around the world are finalizing frameworks for crypto stability and security.</p>
-        <a href="https://www.coindesk.com/policy/2025/01/crypto-regulation-trends-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Women Leading the Future of Finance</h3>
-        <p>Celebrating global female executives shaping sustainable and inclusive finance.</p>
-        <a href="https://www.cnbc.com/select/women-in-finance-leadership-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Build a Strong Investment Portfolio</h3>
-        <p>Diversify, rebalance, and protect your portfolio for long-term growth.</p>
-        <a href="https://www.morganstanley.com/articles/how-to-build-a-strong-investment-portfolio" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI and Automation in Financial Services</h3>
-        <p>How machine learning is transforming banking, risk assessment, and trading.</p>
-        <a href="https://www.pwc.com/gx/en/industries/financial-services/ai-in-finance.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Understanding the Global Stock Market</h3>
-        <p>A beginner-friendly guide to how global stock markets work and how to invest wisely.</p>
-        <a href="https://www.nerdwallet.com/best-online-stock-brokers" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 11: Education -->
-<div class="section" id="education">
-  <h2>Education</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Future of Education in 2025</h3>
-        <p>How AI, online learning, and global collaboration are reshaping classrooms worldwide.</p>
-        <a href="https://www.weforum.org/agenda/2025/01/the-future-of-education-technology-learning/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI in the Classroom: Opportunities and Ethics</h3>
-        <p>Exploring how artificial intelligence can improve learning outcomes responsibly.</p>
-        <a href="https://www.edweek.org/technology/how-ai-is-changing-education/2025/01" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Online Learning Trends for the Modern Student</h3>
-        <p>Virtual learning is evolving — see the latest innovations driving flexibility and success.</p>
-        <a href="https://www.educationcorner.com/online-learning-trends/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Role of Teachers in the Digital Era</h3>
-        <p>Educators are becoming facilitators of critical thinking and digital literacy.</p>
-        <a href="https://hbr.org/2024/08/the-role-of-teachers-in-the-age-of-technology" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>STEM Education and Global Innovation</h3>
-        <p>How strong STEM programs are driving technological advancement and entrepreneurship.</p>
-        <a href="https://www.unesco.org/en/articles/stem-education-future-innovation" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Bridging the Education Gap in Developing Nations</h3>
-        <p>UN reports show digital access and teacher training as key priorities for equality.</p>
-        <a href="https://www.unicef.org/reports/education-2030-progress" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Financial Literacy for Students</h3>
-        <p>Why teaching money management early is essential for the next generation.</p>
-        <a href="https://www.investopedia.com/articles/personal-finance/financial-literacy-for-students.asp" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Inclusive Education: Empowering Every Learner</h3>
-        <p>Creating classrooms where students of all abilities can learn and thrive together.</p>
-        <a href="https://www.edutopia.org/article/inclusive-education-strategies" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Soft Skills Are the New Hard Skills</h3>
-        <p>Why creativity, teamwork, and communication now outrank technical skills in hiring.</p>
-        <a href="https://www.forbes.com/sites/ashleystahl/2025/02/02/soft-skills-are-the-new-hard-skills/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Universities Are Adapting to AI</h3>
-        <p>Higher education is evolving with data analytics, AI tutors, and personalized learning paths.</p>
-        <a href="https://www.timeshighereducation.com/news/how-universities-are-adapting-to-ai" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 12: Entertainment -->
-<div class="section" id="entertainment">
-  <h2>Entertainment</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Netflix Expands Global Film Production for 2025</h3>
-        <p>Streaming giant Netflix invests heavily in new international productions across Africa and Asia.</p>
-        <a href="https://variety.com/2025/global/news/netflix-global-film-production-2025-1236001450/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Hollywood’s 2025 Blockbuster Lineup</h3>
-        <p>A look at the most anticipated movies hitting theaters and streaming platforms this year.</p>
-        <a href="https://www.hollywoodreporter.com/lists/most-anticipated-movies-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Music Streaming Wars Heat Up</h3>
-        <p>Spotify, Apple Music, and YouTube Music battle for dominance as artists push for fairer payouts.</p>
-        <a href="https://www.billboard.com/pro/music-streaming-wars-spotify-apple-youtube-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Rise of African Cinema</h3>
-        <p>Nollywood and other African film industries gain global attention with new funding and distribution.</p>
-        <a href="https://www.bbc.com/culture/article/2025/01/09-the-rise-of-african-cinema" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI and the Future of Film Editing</h3>
-        <p>Artificial intelligence tools are transforming post-production workflows for filmmakers worldwide.</p>
-        <a href="https://www.theverge.com/2025/02/10/ai-film-editing-tools" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Oscar 2025 Predictions</h3>
-        <p>Critics forecast this year’s potential Academy Award winners based on early festival buzz.</p>
-        <a href="https://www.indiewire.com/features/awards/oscar-2025-predictions/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How TikTok Is Redefining Pop Culture</h3>
-        <p>From viral dance trends to music discovery, TikTok continues to influence global entertainment.</p>
-        <a href="https://www.cnn.com/2025/01/17/tiktok-pop-culture-impact" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Gaming Goes Cinematic</h3>
-        <p>Major game studios embrace film-like storytelling as gaming crosses into Hollywood territory.</p>
-        <a href="https://www.ign.com/articles/gaming-goes-cinematic-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Virtual Concerts Are Here to Stay</h3>
-        <p>Artists and fans embrace virtual performances that blend live streaming and immersive tech.</p>
-        <a href="https://www.rollingstone.com/music/music-news/virtual-concerts-trend-2025-1234926139/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Behind the Scenes: The Business of Reality TV</h3>
-        <p>Producers reveal how the booming reality TV industry is evolving in 2025.</p>
-        <a href="https://www.bbc.com/news/entertainment-arts-67890233" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 13: Lifestyle -->
-<div class="section" id="lifestyle">
-  <h2>Lifestyle</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Global Lifestyle Trends of 2025</h3>
-        <p>From sustainable fashion to digital minimalism, these trends are redefining how we live and work.</p>
-        <a href="https://www.vogue.com/article/global-lifestyle-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Balancing Work and Well-Being</h3>
-        <p>How people worldwide are adopting new habits to maintain mental and emotional balance in a digital age.</p>
-        <a href="https://www.nytimes.com/2025/01/22/well/work-life-balance-trends.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Minimalist Living: Owning Less, Experiencing More</h3>
-        <p>Why simplicity and intentional living continue to attract millions globally.</p>
-        <a href="https://www.bbc.com/future/article/2025/02/01-minimalist-lifestyle-trend" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Rise of Eco-Friendly Homes</h3>
-        <p>Architects and homeowners embrace energy-efficient design and green technologies for 2025 living.</p>
-        <a href="https://www.architecturaldigest.com/story/eco-friendly-homes-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Healthy Morning Routines That Actually Work</h3>
-        <p>Experts share realistic steps to start your day productively and peacefully.</p>
-        <a href="https://www.healthline.com/health/healthy-morning-routine" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Travel Is Becoming More Mindful</h3>
-        <p>Slow travel and cultural immersion replace over-tourism as people seek deeper experiences.</p>
-        <a href="https://www.cntraveller.com/article/mindful-travel-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Digital Detox: Reclaiming Focus and Time</h3>
-        <p>Modern professionals unplug to reduce burnout and rediscover real-world presence.</p>
-        <a href="https://www.forbes.com/sites/work-in-progress/2025/01/09/digital-detox-trend-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Modern Home Décor Inspiration</h3>
-        <p>Designers predict this year’s interior trends from neutral palettes to smart-home aesthetics.</p>
-        <a href="https://www.elledecor.com/design-decorate/trends/a39024420/home-decor-trends-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Building Stronger Family Connections</h3>
-        <p>Experts discuss ways to strengthen family bonds amid busy modern lifestyles.</p>
-        <a href="https://www.psychologytoday.com/us/blog/connected-parents/2025/02/family-connections-in-modern-life" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Personal Finance for a Simpler Life</h3>
-        <p>How budgeting, saving, and downsizing lead to greater freedom and happiness.</p>
-        <a href="https://www.investopedia.com/lifestyle-money-tips-2025-7571307" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 14: Sports -->
-<div class="section" id="sports">
-  <h2>Sports</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Lionel Messi Announces Retirement Plans</h3>
-        <p>After nearly two decades of dominance, Messi hints at his next chapter off the pitch.</p>
-        <a href="https://www.espn.com/soccer/story/_/id/41012972/lionel-messi-retirement-inter-miami" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Paris 2024 Olympics: A New Standard for Sustainability</h3>
-        <p>The Olympic Committee showcases eco-friendly venues and carbon-neutral events.</p>
-        <a href="https://www.olympics.com/en/news/paris-2024-sustainability-initiatives" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Nigeria Super Eagles Prepare for AFCON 2025</h3>
-        <p>Coach Finidi George outlines his strategy for reclaiming continental glory.</p>
-        <a href="https://www.bbc.com/sport/football/africa-67893410" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Women’s Football Viewership Hits Record High</h3>
-        <p>2025 marks another milestone year for women’s sports worldwide.</p>
-        <a href="https://www.theguardian.com/football/2025/jan/26/womens-football-viewership-record" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>AI Technology Transforms Athlete Training</h3>
-        <p>From biometrics to predictive analytics, AI is revolutionizing sports performance.</p>
-        <a href="https://www.si.com/tech/2025/02/05/ai-athlete-training" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Cristiano Ronaldo Breaks Another Goal Record</h3>
-        <p>At 40, Ronaldo continues to defy age and cement his legacy in football history.</p>
-        <a href="https://www.skysports.com/football/news/11095/13109753/ronaldo-breaks-all-time-goals-record" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>NBA 2025: Top Contenders for the Championship</h3>
-        <p>The Boston Celtics, Denver Nuggets, and Milwaukee Bucks lead this year’s race for the title.</p>
-        <a href="https://www.nba.com/news/nba-2025-season-preview" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Formula 1 2025 Season Preview</h3>
-        <p>All eyes on Max Verstappen and Mercedes as new rules promise tighter competition.</p>
-        <a href="https://www.formula1.com/en/latest/article/f1-2025-preview" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Serena Williams Launches Tennis Academy in Africa</h3>
-        <p>The legend invests in developing young female athletes across the continent.</p>
-        <a href="https://edition.cnn.com/2025/02/03/tennis/serena-williams-tennis-academy-africa" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>eSports Revenue to Surpass $3 Billion in 2025</h3>
-        <p>Competitive gaming solidifies its place as a mainstream sport and entertainment industry.</p>
-        <a href="https://www.forbes.com/sites/games/2025/01/21/esports-revenue-growth-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 15: Sex Life -->
-<div class="section" id="sex-life">
-  <h2>Sex Life</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Healthy Communication Improves Intimacy</h3>
-        <p>Experts explain why open, honest dialogue is the foundation of a fulfilling sex life.</p>
-        <a href="https://www.psychologytoday.com/us/blog/sex-science/2025/02/how-communication-strengthens-intimacy" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Science of Attraction</h3>
-        <p>Researchers explore what truly drives physical and emotional attraction between partners.</p>
-        <a href="https://www.healthline.com/health/the-science-of-attraction" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Balancing Work, Stress, and Intimacy</h3>
-        <p>Modern lifestyles can affect romantic connection—here’s how couples can reconnect.</p>
-        <a href="https://www.medicalnewstoday.com/articles/how-stress-affects-intimacy" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Understanding Sexual Health for Couples</h3>
-        <p>Doctors emphasize the importance of sexual wellness checkups and healthy habits.</p>
-        <a href="https://www.mayoclinic.org/healthy-lifestyle/sexual-health/in-depth/sexual-health/art-20046433" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Emotional Intimacy Impacts Physical Connection</h3>
-        <p>Relationships built on trust and empathy often report stronger physical bonds.</p>
-        <a href="https://www.betterhelp.com/advice/relationships/emotional-intimacy-and-its-role-in-relationships/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Healthy Boundaries in Romantic Relationships</h3>
-        <p>Learning to set boundaries can actually deepen love and mutual respect.</p>
-        <a href="https://www.verywellmind.com/setting-boundaries-in-relationships-5199762" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Nutrition and Sexual Wellness</h3>
-        <p>Diet plays a big role in hormonal balance, stamina, and overall sexual health.</p>
-        <a href="https://www.webmd.com/sex-relationships/ss/slideshow-foods-sex-life" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How to Reignite Passion in Long-Term Relationships</h3>
-        <p>Therapists share proven strategies to bring spark and connection back.</p>
-        <a href="https://www.cosmopolitan.com/sex-love/a38928483/how-to-reignite-passion/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Sleep and Intimacy: The Hidden Connection</h3>
-        <p>Studies show quality sleep boosts hormones tied to desire and satisfaction.</p>
-        <a href="https://www.sleepfoundation.org/relationships/sex-and-sleep" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Building Mutual Trust in Intimate Relationships</h3>
-        <p>Trust remains the most important factor in both emotional and physical closeness.</p>
-        <a href="https://www.psychologytoday.com/us/blog/living-and-loving/2025/02/building-trust-in-intimacy" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 17: Fashion -->
-<div class="section" id="fashion">
-  <h2>Fashion</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Fashion Trends to Watch in 2025</h3>
-        <p>Designers embrace eco-conscious fabrics, minimalism, and bold color palettes this year.</p>
-        <a href="https://www.vogue.com/article/fashion-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How AI Is Transforming the Fashion Industry</h3>
-        <p>From virtual fittings to predictive trend analysis, AI is reshaping fashion design and retail.</p>
-        <a href="https://www.businessoffashion.com/articles/technology/ai-fashion-transformation-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>African Designers Take Global Stage</h3>
-        <p>From Lagos to Paris, African fashion brands are redefining creativity and cultural pride.</p>
-        <a href="https://www.bbc.com/culture/article/2025/01/15-african-designers-global-impact" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Rise of Gender-Neutral Fashion</h3>
-        <p>Major brands are embracing inclusivity with collections that blur gender lines.</p>
-        <a href="https://www.cnn.com/style/article/gender-neutral-fashion-trend-2025/index.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Sustainability Became Fashion’s Core Value</h3>
-        <p>Eco-friendly practices and ethical sourcing dominate fashion week runways.</p>
-        <a href="https://www.theguardian.com/fashion/2025/feb/02/sustainable-fashion-2025-trends" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Paris Fashion Week 2025 Highlights</h3>
-        <p>The most talked-about runway moments and emerging designers from Paris.</p>
-        <a href="https://www.harpersbazaar.com/fashion/fashion-week/g46098322/paris-fashion-week-2025-highlights/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Digital Fashion and the Metaverse</h3>
-        <p>Virtual clothing is becoming a billion-dollar market as brands move into digital wearables.</p>
-        <a href="https://www.forbes.com/sites/metaverse-fashion-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Streetwear Continues Its Global Reign</h3>
-        <p>What started as subculture fashion now dominates luxury collaborations and pop culture.</p>
-        <a href="https://www.highsnobiety.com/p/streetwear-trends-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Recycled Materials: The Future of Fashion</h3>
-        <p>Brands are using ocean plastics and plant-based textiles for sustainable collections.</p>
-        <a href="https://www.voguebusiness.com/sustainability/recycled-materials-fashion-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Business of Fashion Influencers</h3>
-        <p>How influencers are shaping brand identities and driving online fashion sales.</p>
-        <a href="https://www.elle.com/fashion/a48210901/fashion-influencers-marketing-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 18: Politics -->
-<div class="section" id="politics">
-  <h2>Politics</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>US 2024 Election Results and Global Reactions</h3>
-        <p>World leaders react to the results of the 2024 US presidential election as global alliances shift.</p>
-        <a href="https://www.bbc.com/news/world-us-canada-67402977" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>EU Pushes for Stronger Climate Legislation</h3>
-        <p>The European Parliament passes a landmark bill aiming for carbon neutrality by 2040.</p>
-        <a href="https://www.reuters.com/world/europe/eu-approves-new-climate-law-2040-target-2025-01-11/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Nigeria’s Economic Reform Policies Gain Momentum</h3>
-        <p>President Bola Tinubu’s administration announces new strategies to stabilize Nigeria’s economy.</p>
-        <a href="https://www.aljazeera.com/news/2025/1/25/nigeria-economic-reforms-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>China and the US Resume High-Level Talks</h3>
-        <p>Diplomatic discussions in Beijing aim to reduce tensions over trade and technology disputes.</p>
-        <a href="https://www.cnn.com/2025/02/10/politics/us-china-relations-talks-2025/index.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>UK Debates Post-Brexit Trade Agreements</h3>
-        <p>Parliament faces challenges finalizing new trade pacts amid economic pressure.</p>
-        <a href="https://www.theguardian.com/politics/2025/jan/09/uk-trade-brexit-updates" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Middle East Peace Negotiations Renewed</h3>
-        <p>Leaders from multiple nations meet in Dubai to push for stability in the region.</p>
-        <a href="https://www.aljazeera.com/news/2025/02/12/middle-east-peace-talks-resume" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Africa Union Launches Pan-African Development Fund</h3>
-        <p>Member states commit to funding infrastructure, education, and digital transformation across Africa.</p>
-        <a href="https://www.dw.com/en/africa-union-launches-pan-african-fund/a-68590245" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>India’s Budget 2025 Focuses on Technology and Growth</h3>
-        <p>The Indian government allocates record investments to AI and green energy sectors.</p>
-        <a href="https://timesofindia.indiatimes.com/india/budget-2025-key-highlights/articleshow/107812345.cms" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Global South Strengthens Trade Bloc</h3>
-        <p>Emerging economies unite to counterbalance Western influence in global finance and policy.</p>
-        <a href="https://www.economist.com/international/2025/02/02/global-south-trade-bloc-expands" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>UN Calls for Renewed Commitment to Human Rights</h3>
-        <p>The UN Secretary-General urges nations to uphold freedoms and democratic governance worldwide.</p>
-        <a href="https://news.un.org/en/story/2025/01/1150947" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 19: Culture -->
-<div class="section" id="culture">
-  <h2>Culture</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How African Storytelling Is Influencing Global Cinema</h3>
-        <p>Filmmakers from Nigeria, Kenya, and South Africa are reshaping how African narratives are told worldwide.</p>
-        <a href="https://www.bbc.com/culture/article/2025/02/10-african-storytelling-global-impact" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Tokyo’s Urban Art Scene Thrives in 2025</h3>
-        <p>Japanese youth are transforming the city’s walls and digital spaces with innovative street art expressions.</p>
-        <a href="https://www.cnn.com/style/article/tokyo-street-art-2025/index.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>The Return of Indigenous Languages</h3>
-        <p>Communities across the Americas are reviving ancestral languages through education and tech platforms.</p>
-        <a href="https://www.nationalgeographic.com/culture/article/indigenous-language-revival-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Music Festivals Are Adapting to a New Era</h3>
-        <p>Post-pandemic festivals focus on sustainability, inclusion, and hybrid digital experiences.</p>
-        <a href="https://www.billboard.com/culture/music/music-festival-trends-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>UNESCO Adds New Heritage Sites for 2025</h3>
-        <p>From African deserts to European cathedrals, the latest list celebrates cultural and natural wonders.</p>
-        <a href="https://whc.unesco.org/en/news/2025-new-heritage-sites/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Digital Museums Are Changing How We Experience Art</h3>
-        <p>AR and VR technologies allow audiences to explore cultural treasures from anywhere.</p>
-        <a href="https://www.theguardian.com/artanddesign/2025/feb/01/digital-museums-virtual-art-experiences" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Latin America’s Cultural Renaissance</h3>
-        <p>From fashion to film, Latin America’s creative industries are booming with authenticity and pride.</p>
-        <a href="https://www.aljazeera.com/features/2025/01/19/latin-america-cultural-renaissance" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Globalization vs. Cultural Identity</h3>
-        <p>Experts discuss the balance between global connectivity and preserving local traditions.</p>
-        <a href="https://www.economist.com/culture/2025/02/05/globalization-and-cultural-identity" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>How Fashion Reflects Culture in 2025</h3>
-        <p>Designers blend tradition and technology to express cultural roots in modern style.</p>
-        <a href="https://www.vogue.com/article/cultural-fashion-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Religion and Art: Finding Common Ground</h3>
-        <p>Artists explore faith through visual and performance works that inspire global audiences.</p>
-        <a href="https://www.nytimes.com/2025/01/28/arts/religion-and-art-exhibits.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- Section 20: Economy -->
-<div class="section" id="economy">
-  <h2>Economy</h2>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Global Inflation Rates Begin to Stabilize</h3>
-        <p>After years of volatility, global inflation is finally showing signs of easing, according to IMF reports.</p>
-        <a href="https://www.imf.org/en/News/Articles/2025/02/01/global-inflation-trends-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Nigeria’s Naira Strengthens Amid Economic Reforms</h3>
-        <p>The Central Bank’s new policies have bolstered investor confidence and stabilized the local currency.</p>
-        <a href="https://www.reuters.com/world/africa/nigeria-naira-gains-reforms-2025-01-22/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>US Stock Market Hits Record High</h3>
-        <p>Tech and green energy sectors drive major gains as Wall Street closes on historic highs.</p>
-        <a href="https://www.cnbc.com/2025/02/03/us-stock-market-record-2025.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>China’s Manufacturing Rebounds Strongly</h3>
-        <p>Economic data shows China’s industrial sector recovering faster than expected in early 2025.</p>
-        <a href="https://www.bloomberg.com/news/articles/2025-01-30/china-manufacturing-recovery-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>European Union Plans Digital Euro Launch</h3>
-        <p>The EU prepares to introduce a digital currency aimed at improving financial transparency and inclusion.</p>
-        <a href="https://www.euronews.com/business/2025/01/26/eu-digital-euro-launch" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Global Oil Prices Dip as Supply Increases</h3>
-        <p>Oil-producing nations adjust production quotas as demand levels off in key markets.</p>
-        <a href="https://www.aljazeera.com/economy/2025/02/07/oil-prices-drop-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>India Emerges as a Global Tech Export Leader</h3>
-        <p>India’s software and AI service exports reach record levels, boosting its GDP growth outlook.</p>
-        <a href="https://www.business-standard.com/economy/news/india-tech-export-boom-2025-124021500123.html" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Cryptocurrency Regulations Tighten Worldwide</h3>
-        <p>Governments implement stricter laws to ensure digital asset stability and reduce fraud.</p>
-        <a href="https://www.cointelegraph.com/news/global-crypto-regulation-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>Africa’s Free Trade Area Shows Promising Growth</h3>
-        <p>Intra-African trade grows as the AfCFTA agreement enters its full operational phase.</p>
-        <a href="https://www.africanews.com/2025/01/18/afcfta-trade-growth-2025/" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <h3>World Bank Forecasts Global GDP Growth at 3.1%</h3>
-        <p>Emerging markets drive expansion despite slowdowns in Europe and North America.</p>
-        <a href="https://www.worldbank.org/en/news/press-release/2025/01/12/global-economic-outlook-2025" target="_blank">Read More →</a>
-      </div>
-    </div>
-
-  </div>
-</div>
 <script>
-const sections=[
-  'Productivity','Artificial Intelligence','Business','Health','Sports','Entertainment','Science','Culture','Mentorship','Romance','Food & Diets','Relationship with God'
-];
+// Consent
+const consentBtn = document.getElementById('consent-btn');
+let consentGiven = false;
+consentBtn.onclick = () => {
+  document.getElementById('consent-banner').style.display='none';
+  consentGiven = true;
+  (adsbygoogle = window.adsbygoogle || []).push({});
+};
 
+// Dark Mode
+const darkToggle = document.getElementById('darkModeToggle');
+darkToggle.onclick = () => {
+  document.body.classList.toggle('dark-mode');
+  darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+};
 
-// Theme toggle
-const toggleBtn=document.getElementById('themeToggle');
-toggleBtn.addEventListener('click',()=>{
-  if(document.body.dataset.theme==='light'){
-    document.body.dataset.theme='dark';
-    toggleBtn.textContent='Light Mode';
-  }else{
-    document.body.dataset.theme='light';
-    toggleBtn.textContent='Dark Mode';
-  }
+// Navigation
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.news-section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(btn.dataset.section).classList.add('active');
+  });
 });
-</script>
-</div>
 
-<footer>
-  ©ZpotLit2025. All rights reserved.
-</footer>
+// Sub-tabs
+let currentNG='politics', currentSport='football';
+document.querySelectorAll('[data-ngcat]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-ngcat]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentNG=btn.dataset.ngcat;
+    loadNigeriaNews(currentNG);
+  });
+});
+document.querySelectorAll('[data-sport]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-sport]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSport=btn.dataset.sport;
+    loadSportsNews(currentSport);
+  });
+});
+
+// RSS feeds
+const feeds={
+  global:['https://rss.cnn.com/rss/edition.rss','http://feeds.bbci.co.uk/news/world/rss.xml'],
+  africa:['https://www.africanews.com/feed/','https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf'],
+  nigeria:{
+    politics:['https://punchng.com/topics/politics/feed/','https://www.vanguardngr.com/category/politics/feed/'],
+    education:['https://thenationonlineng.net/feed/','https://tribuneonlineng.com/feed/','https://dailypost.ng/feed/'],
+    economy:['https://nairametrics.com/feed/','https://businessday.ng/feed/','https://leadership.ng/feed/']
+  },
+  sports:{
+    football:['http://feeds.bbci.co.uk/sport/football/rss.xml'],
+    basketball:['https://www.espn.com/espn/rss/nba/news'],
+    others:['http://feeds.bbci.co.uk/sport/rss.xml']
+  }
+};
+
+// Time ago
+function timeAgo(dateStr){
+  if(!dateStr)return '';
+  const diff=(new Date()-new Date(dateStr))/1000;
+  const h=Math.floor(diff/3600);
+  const d=Math.floor(diff/86400);
+  return d>0?`${d}d ago`:h>0?`${h}h ago`:`${Math.floor(diff/60)}m ago`;
+}
+
+// Render news with ads
+function renderNews(container,articles){
+  if(!articles.length){container.innerHTML="No articles";return;}
+  const cards=[];
+  articles.slice(0,20).forEach((a,i)=>{
+    const imgTag=a.enclosure?.link||a.thumbnail||a.urlToImage?`<img src="${a.enclosure?.link||a.thumbnail||a.urlToImage}" alt="News Image">`:"";
+    cards.push(`<div class="news-card">${imgTag}<div class="news-card-content"><h3>${a.title}</h3><p class="news-meta">${timeAgo(a.pubDate||a.isoDate||a.publishedAt)}</p><a href="${a.link||a.url}" target="_blank">Read More</a></div></div>`);
+    if((i+1)%5===0 && consentGiven){
+      cards.push(`<ins class="adsbygoogle" style="display:block;margin:1rem 0;" data-ad-client="ca-pub-9702899463803987" data-ad-slot="YOUR_AD_SLOT_HERE" data-ad-format="auto" data-full-width-responsive="true"></ins>`);
+    }
+  });
+  container.innerHTML=cards.join('');
+  if(consentGiven){(adsbygoogle=window.adsbygoogle||[]).push({});}
+}
+
+// Fetch RSS
+async function fetchRSS(url){
+  try{
+    const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+    const res=await fetch(api);
+    const data=await res.json();
+    return (data.items||[]).sort((a,b)=>new Date(b.pubDate||b.isoDate||b.publishedAt)-new Date(a.pubDate||a.isoDate||a.publishedAt));
+  }catch(e){return [];}
+}
+
+// Loaders
+async function loadNigeriaNews(cat){const c=document.getElementById('nigeria-news');let all=[];for(let f of feeds.nigeria[cat]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadSportsNews(cat){const c=document.getElementById('sports-news');let all=[];for(let f of feeds.sports[cat]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadGenericNews(section,id){const c=document.getElementById(id);let all=[];for(let f of feeds[section]||[]) all=all.concat(await fetchRSS(f));renderNews(c,all);}
+async function loadBreaking(){let headlines=[];for(let u of ['http://feeds.bbci.co.uk/news/world/rss.xml','https://punchng.com/feed/']){const items=await fetchRSS(u);headlines=headlines.concat(items.map(i=>i.title));}document.getElementById('ticker').innerHTML=headlines.slice(0,15).join(' • ');}
+
+// Search
+document.getElementById('search-btn').addEventListener('click',async()=>{
+  const q=document.getElementById('search-input').value.trim();if(!q)return alert('Enter a keyword');
+  const sec=document.querySelector('.news-section.active');sec.innerHTML='<div class="news-container">Searching...</div>';
+  const container=sec.querySelector('.news-container');
+  try{
+    const res=await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&apiKey=33caabd445a4487c800ad4edce0ff02c&pageSize=20&sortBy=publishedAt`);
+    const data=await res.json();
+    if(data.articles?.length) renderNews(container,data.articles.map(a=>({title:a.title,link:a.url,thumbnail:a.urlToImage,publishedAt:a.publishedAt})));
+    else container.innerHTML='No results found';
+  }catch(e){container.innerHTML='Error fetching results';}
+});
+
+// Refresh
+document.getElementById('refreshBtn').addEventListener('click',refreshAll);
+async function refreshAll(){
+  await loadBreaking();
+  await loadGenericNews('global','global-news');
+  await loadGenericNews('africa','africa-news');
+  await loadNigeriaNews(currentNG);
+  await loadSportsNews(currentSport);
+  document.getElementById('lastUpdated').textContent="Last updated: "+new Date().toLocaleTimeString();
+}
+
+// Initial load
+refreshAll();
+</script>
 
 </body>
 </html>
